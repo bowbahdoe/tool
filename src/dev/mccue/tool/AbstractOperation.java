@@ -8,7 +8,7 @@ package dev.mccue.tool;
  */
 public abstract class AbstractOperation<T extends AbstractOperation<T>> {
     private boolean silent_ = false;
-    private boolean executed_ = false;
+    protected boolean executed = false;
 
     /**
      * Changes whether the operation should be silent or not.
@@ -61,10 +61,10 @@ public abstract class AbstractOperation<T extends AbstractOperation<T>> {
      */
     public void executeOnce(Runnable setup)
             throws Exception {
-        if (executed_) {
+        if (executed) {
             return;
         }
-        executed_ = true;
+        executed = true;
 
         if (setup != null) {
             setup.run();

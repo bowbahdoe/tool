@@ -1,4 +1,4 @@
-package dev.mccue.tool.jdk;
+package dev.mccue.tool.javac;
 
 import dev.mccue.tool.ToolOptions;
 
@@ -11,6 +11,7 @@ public class JavacOptions extends ToolOptions {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
     }
+
 // Usage: javac <options> <source files>
     public JavacOptions sourceFiles(Object... files) {
         return sourceFiles(Arrays.asList(files));

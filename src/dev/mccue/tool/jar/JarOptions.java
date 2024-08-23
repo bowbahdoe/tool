@@ -1,4 +1,4 @@
-package dev.mccue.tool.jdk;
+package dev.mccue.tool.jar;
 
 import dev.mccue.tool.ToolOptions;
 

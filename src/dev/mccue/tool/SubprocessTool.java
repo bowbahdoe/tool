@@ -6,6 +6,7 @@ import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 record SubprocessTool(List<String> commandPrefix) implements Tool {
     @Override
@@ -26,12 +27,13 @@ record SubprocessTool(List<String> commandPrefix) implements Tool {
     }
 
     @Override
-    public void log(PrintStream out, String[] args) {
-        out.print(String.join(" ", commandPrefix));
+    public void log(Consumer<? super String> logger, String[] args) {
+        var sb = new StringBuilder();
+        sb.append(String.join(" ", commandPrefix));
         if (!(args.length == 0)) {
-            out.print(" ");
-            out.print(String.join(" ", args));
+            sb.append(" ");
+            sb.append(String.join(" ", args));
         }
-        out.println();
+        logger.accept(sb.toString());
     }
 }

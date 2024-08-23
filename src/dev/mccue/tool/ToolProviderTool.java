@@ -1,6 +1,6 @@
 package dev.mccue.tool;
 
-import java.io.PrintStream;
+import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 record ToolProviderTool(ToolProvider toolProvider) implements Tool {
@@ -13,12 +13,13 @@ record ToolProviderTool(ToolProvider toolProvider) implements Tool {
     }
 
     @Override
-    public void log(PrintStream out, String[] args) {
-        out.print(toolProvider.name());
+    public void log(Consumer<? super String> logger, String[] args) {
+        var sb = new StringBuilder();
+        sb.append(toolProvider.name());
         if (!(args.length == 0)) {
-            out.print(" ");
-            out.print(String.join(" ", args));
+            sb.append(" ");
+            sb.append(String.join(" ", args));
         }
-        out.println();
+        logger.accept(sb.toString());
     }
 }

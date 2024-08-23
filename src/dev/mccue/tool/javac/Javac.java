@@ -1,4 +1,4 @@
-package dev.mccue.tool.jdk;
+package dev.mccue.tool.javac;
 
 import dev.mccue.tool.AbstractToolOperation;
 import dev.mccue.tool.ExitStatusException;
@@ -34,4 +34,5 @@ public class Javac extends AbstractToolOperation<Javac, JavacOptions> {
     public static void execute(Consumer<? super JavacOptions> consumer) throws ExitStatusException {
         new Javac(consumer).execute();
     }
+
 }

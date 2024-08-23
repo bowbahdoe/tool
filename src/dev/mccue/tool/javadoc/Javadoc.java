@@ -1,4 +1,4 @@
-package dev.mccue.tool.jdk;
+package dev.mccue.tool.javadoc;
 
 import dev.mccue.tool.AbstractToolOperation;
 
