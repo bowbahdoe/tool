@@ -1,17 +1,17 @@
 project:
   name: tool
   version: 2024.08.23
-  description: Stage artifacts for publishing to a maven repository.
-  longDescription: Stage artifacts for publishing to a maven repository.
+  description: API for working directly with CLI tools.
+  longDescription: API for working directly with CLI tools.
   links:
-    homepage: https://github.com/bowbahdoe/tool
+    homepage: https://github.com/bowbahdoe/tools
   authors:
     - Ethan McCue
   license: APACHE-2.0
   inceptionYear: 2024
   versionPattern: CHRONVER
   java:
-    mainModule: dev.mccue.tool
+    mainModule: dev.mccue.tools
     groupId: dev.mccue
 
 signing:
@@ -29,7 +29,3 @@ deploy:
         releaseRepository: false
         stagingRepositories:
           - build/staging
-
-release:
-  github:
-    enabled: false
