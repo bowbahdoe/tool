@@ -26,41 +26,4 @@
         <developerConnection>scm:git:ssh://github.com:bowbahdoe/bldtools.git</developerConnection>
         <url>http://github.com/bowbahdoe/bldtools/tree/main</url>
     </scm>
-    <dependencies>
-        <dependency>
-            <groupId>com.uwyn.rife2</groupId>
-            <artifactId>bld</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>jstage</artifactId>
-            <version>2024.07.19</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>jresolve-cli</artifactId>
-            <version>2024.07.27</version>
-        </dependency>
-        <dependency>
-            <groupId>info.picocli</groupId>
-            <artifactId>picocli</artifactId>
-            <version>4.7.6</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>resolve</artifactId>
-            <version>2024.05.26</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>json</artifactId>
-            <version>2023.12.23</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>purl</artifactId>
-            <version>2023.11.07</version>
-        </dependency>
-    </dependencies>
 </project>

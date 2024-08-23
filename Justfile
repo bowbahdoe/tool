@@ -4,14 +4,6 @@ help:
 clean:
     rm -rf build
 
-install:
-    jresolve \
-        --purge-output-directory \
-        --use-module-names \
-        --enrich-pom pom.xml \
-        --output-directory libs \
-        @libs.txt
-
 compile: clean
     javac \
       --class-path "libs/*" \

@@ -1,3 +1,0 @@
-pkg:maven/com.uwyn.rife2/bld@2.0.1
-pkg:maven/dev.mccue/jstage@2024.07.19
-pkg:maven/dev.mccue/jresolve-cli@2024.07.27
