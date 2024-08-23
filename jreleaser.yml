@@ -28,4 +28,4 @@ deploy:
         closeRepository: false
         releaseRepository: false
         stagingRepositories:
-          - build/staging
+          - build/jstage
