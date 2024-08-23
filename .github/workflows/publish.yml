@@ -19,6 +19,9 @@ jobs:
         uses: sfesenko/setup-sdkman@v1
         with:
           deps: jreleaser
+      - name: setup jstage
+        run:
+          bash < <(curl -s https://raw.githubusercontent.com/bowbahdoe/jstage/main/install)
       - name: Publish package
         env:
           JRELEASER_NEXUS2_USERNAME: ${{ secrets.JRELEASER_NEXUS2_USERNAME }}
