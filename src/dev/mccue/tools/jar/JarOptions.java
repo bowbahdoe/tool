@@ -4,13 +4,21 @@ import dev.mccue.tools.ToolOptions;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JarOptions extends ToolOptions {
-
+public final class JarOptions extends ToolOptions {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
+    }
+
+    public JarOptions() {
+        super();
+    }
+
+    public JarOptions(Collection<? extends String> c) {
+        super(c);
     }
 
     //Usage: jar [OPTION...] [ [--release VERSION] [-C dir] files] ...
@@ -53,7 +61,7 @@ public class JarOptions extends ToolOptions {
      * by -f or --file contains a path, missing parent directories
      * will also be created
      */
-    public JarOptions c() {
+    public JarOptions _c() {
         add("-c");
         return this;
     }
@@ -63,7 +71,7 @@ public class JarOptions extends ToolOptions {
      * by -f or --file contains a path, missing parent directories
      * will also be created
      */
-    public JarOptions create() {
+    public JarOptions __create() {
         add("--create");
         return this;
     }
@@ -71,13 +79,24 @@ public class JarOptions extends ToolOptions {
     //  -i, --generate-index=FILE  Generate index information for the specified jar
     //                             archives. This option is deprecated and may be
     //                             removed in a future release.
+    public JarOptions _i(Object file) {
+        add("-i");
+        add(toArgumentString(file));
+        return this;
+    }
+
+    public JarOptions __generate_index(Object file) {
+        add("--generate-index");
+        add(toArgumentString(file));
+        return this;
+    }
 
     //  -t, --list                 List the table of contents for the archive
 
     /**
      * List the table of contents for the archive
      */
-    public JarOptions t() {
+    public JarOptions _t() {
         add("-t");
         return this;
     }
@@ -86,19 +105,19 @@ public class JarOptions extends ToolOptions {
     /**
      * List the table of contents for the archive
      */
-    public JarOptions list() {
-        add("-t");
+    public JarOptions __list() {
+        add("--list");
         return this;
     }
 
     //  -u, --update               Update an existing jar archive
 
-    public JarOptions u() {
+    public JarOptions _u() {
         add("-u");
         return this;
     }
 
-    public JarOptions update() {
+    public JarOptions __update() {
         add("--update");
         return this;
     }
@@ -106,24 +125,24 @@ public class JarOptions extends ToolOptions {
     //  -x, --extract              Extract named (or all) files from the archive
 
 
-    public JarOptions x() {
+    public JarOptions _x() {
         add("-x");
         return this;
     }
 
-    public JarOptions extract() {
+    public JarOptions __extract() {
         add("--extract");
         return this;
     }
 
     //  -d, --describe-module      Print the module descriptor, or automatic module name
 
-    public JarOptions d() {
+    public JarOptions _d() {
         add("-d");
         return this;
     }
 
-    public JarOptions describeModule() {
+    public JarOptions __describe_module() {
         add("--describe-module");
         return this;
     }
@@ -133,7 +152,7 @@ public class JarOptions extends ToolOptions {
     //                             jar archive is consistent across all different release
     //                             versions.
 
-    public JarOptions validate() {
+    public JarOptions __validate() {
         add("--validate");
         return this;
     }
@@ -144,7 +163,7 @@ public class JarOptions extends ToolOptions {
     //  -C DIR                     Change to the specified directory and include the
     //                             following file
 
-    public JarOptions C(Object dir, Object file) {
+    public JarOptions _C(Object dir, Object file) {
         add("-C");
         add(toArgumentString(dir));
         add(toArgumentString(file));
@@ -154,13 +173,13 @@ public class JarOptions extends ToolOptions {
     //  -f, --file=FILE            The archive file name. When omitted, either stdin or
     //                             stdout is used based on the operation
 
-    public JarOptions f(Object file) {
+    public JarOptions _f(Object file) {
         add("-f");
         add(toArgumentString(file));
         return this;
     }
 
-    public JarOptions file(Object file) {
+    public JarOptions __file(Object file) {
         add("--file");
         add(toArgumentString(file));
         return this;
@@ -168,19 +187,19 @@ public class JarOptions extends ToolOptions {
 
     //      --release VERSION      Places all following files in a versioned directory
     //                             of the jar (i.e. META-INF/versions/VERSION/)
-    public JarOptions release(Object version) {
+    public JarOptions __release(Object version) {
         add("--release");
         add(toArgumentString(version));
         return this;
     }
 
     //  -v, --verbose              Generate verbose output on standard output
-    public JarOptions v() {
+    public JarOptions _v() {
         add("-v");
         return this;
     }
 
-    public JarOptions verbose() {
+    public JarOptions __verbose() {
         add("--verbose");
         return this;
     }
@@ -190,13 +209,13 @@ public class JarOptions extends ToolOptions {
     //  -e, --main-class=CLASSNAME The application entry point for stand-alone
     //                             applications bundled into a modular, or executable,
     //                             jar archive
-    public JarOptions e(Object className) {
+    public JarOptions _e(Object className) {
         add("-e");
         add(toArgumentString(className));
         return this;
     }
 
-    public JarOptions mainClass(Object className) {
+    public JarOptions __main_class(Object className) {
         add("--main-class");
         add(toArgumentString(className));
         return this;
@@ -205,32 +224,32 @@ public class JarOptions extends ToolOptions {
 
     //  -m, --manifest=FILE        Include the manifest information from the given
     //                             manifest file
-    public JarOptions m(Object file) {
+    public JarOptions _m(Object file) {
         add("-m");
         add(toArgumentString(file));
         return this;
     }
 
-    public JarOptions manifest(Object file) {
+    public JarOptions __manifest(Object file) {
         add("--mainifest");
         add(toArgumentString(file));
         return this;
     }
 
     //  -M, --no-manifest          Do not create a manifest file for the entries
-    public JarOptions M() {
+    public JarOptions _M() {
         add("-M");
         return this;
     }
 
-    public JarOptions noManifest() {
+    public JarOptions __no_manifest() {
         add("--no-manifest");
         return this;
     }
 
     //      --module-version=VERSION    The module version, when creating a modular
     //                             jar, or updating a non-modular jar
-    public JarOptions moduleVersion(Object version) {
+    public JarOptions __module_version(Object version) {
         add("--module-version");
         add(toArgumentString(version));
         return this;
@@ -240,7 +259,7 @@ public class JarOptions extends ToolOptions {
     //                             matched by the given pattern and that depend upon
     //                             directly or indirectly on a modular jar being
     //                             created or a non-modular jar being updated
-    public JarOptions hashModules(Object pattern) {
+    public JarOptions __hash_modules(Object pattern) {
         add("--hash-modules");
         add(toArgumentString(pattern));
         return this;
@@ -248,11 +267,11 @@ public class JarOptions extends ToolOptions {
 
     //  -p, --module-path          Location of module dependence for generating
     //                             the hash
-    public JarOptions p(Object... path) {
-        return p(Arrays.asList(path));
+    public JarOptions _p(Object... path) {
+        return _p(Arrays.asList(path));
     }
 
-    public JarOptions p(List<?> path) {
+    public JarOptions _p(List<?> path) {
         add("-p");
         add(
                 path
@@ -263,11 +282,11 @@ public class JarOptions extends ToolOptions {
         return this;
     }
 
-    public JarOptions modulePath(Object... path) {
-        return modulePath(Arrays.asList(path));
+    public JarOptions __module_path(Object... path) {
+        return __module_path(Arrays.asList(path));
     }
 
-    public JarOptions modulePath(List<?> path) {
+    public JarOptions __module_path(List<?> path) {
         add("--module-path");
         add(
                 path
@@ -288,7 +307,7 @@ public class JarOptions extends ToolOptions {
         return this;
     }
 
-    public JarOptions noCompress() {
+    public JarOptions __no_compress() {
         add("--no-compress");
         return this;
     }
@@ -296,7 +315,7 @@ public class JarOptions extends ToolOptions {
     //      --date=TIMESTAMP       The timestamp in ISO-8601 extended offset date-time with
     //                             optional time-zone format, to use for the timestamps of
     //                             entries, e.g. "2022-02-12T12:30:00-05:00"
-    public JarOptions date(Object timestamp) {
+    public JarOptions __date(Object timestamp) {
         add("--date");
         add(toArgumentString(timestamp));
         return this;
@@ -306,29 +325,29 @@ public class JarOptions extends ToolOptions {
     // Other options:
     //
     //  -?, -h, --help[:compat]    Give this, or optionally the compatibility, help
-    public JarOptions h() {
+    public JarOptions _h() {
         add("-h");
         return this;
     }
 
-    public JarOptions help() {
+    public JarOptions __help() {
         add("--help");
         return this;
     }
 
-    public JarOptions helpCompat() {
+    public JarOptions __help_compat() {
         add("--help:compat");
         return this;
     }
 
     //      --help-extra           Give help on extra options
-    public JarOptions helpExtra() {
+    public JarOptions __help_extra() {
         add("--help-extra");
         return this;
     }
 
     //      --version              Print program version
-    public JarOptions version() {
+    public JarOptions __version() {
         add("--version");
         return this;
     }

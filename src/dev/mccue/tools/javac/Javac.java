@@ -18,6 +18,10 @@ public final class Javac extends AbstractToolOperation<Javac, JavacOptions> {
         );
     }
 
+    public Javac() {
+        this(new JavacOptions());
+    }
+
     public Javac(Consumer<? super JavacOptions> consumer) {
         this(new JavacOptions());
         consumer.accept(this.options);
@@ -34,5 +38,4 @@ public final class Javac extends AbstractToolOperation<Javac, JavacOptions> {
     public static void execute(Consumer<? super JavacOptions> consumer) throws ExitStatusException {
         new Javac(consumer).execute();
     }
-
 }

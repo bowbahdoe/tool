@@ -2,10 +2,21 @@ package dev.mccue.tools.jpackage;
 
 import dev.mccue.tools.ToolOptions;
 
-public class JPackageOptions extends ToolOptions {
+import java.util.Collection;
+
+public final class JPackageOptions extends ToolOptions {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
     }
+
+    public JPackageOptions() {
+        super();
+    }
+
+    public JPackageOptions(Collection<? extends String> c) {
+        super(c);
+    }
+
     // Usage: jpackage <options>
     //
     //Sample usages:
@@ -48,31 +59,76 @@ public class JPackageOptions extends ToolOptions {
     //          Valid values are: {"app-image", "dmg", "pkg"}
     //          If this option is not specified a platform dependent
     //          default type will be created.
-    public JPackageOptions type(Object type) {
+    public JPackageOptions __type(Object type) {
         add("--type");
         add(toArgumentString(type));
         return this;
     }
 
-    public JPackageOptions t(Object type) {
+    public JPackageOptions _t(Object type) {
         add("-t");
         add(toArgumentString(type));
         return this;
     }
     //  --app-version <version>
     //          Version of the application and/or package
+    public JPackageOptions __app_version(Object version) {
+        add("--app-version");
+        add(toArgumentString(version));
+        return this;
+    }
+
     //  --copyright <copyright string>
     //          Copyright for the application
+    public JPackageOptions __copyright(Object copyright) {
+        add("--copyright");
+        add(toArgumentString(copyright));
+        return this;
+    }
+
     //  --description <description string>
     //          Description of the application
+    public JPackageOptions __description(Object description) {
+        add("--description");
+        add(toArgumentString(description));
+        return this;
+    }
+
     //  --help -h
     //          Print the usage text with a list and description of each valid
     //          option for the current platform to the output stream, and exit
+    public JPackageOptions __help() {
+        add("--help");
+        return this;
+    }
+
+    public JPackageOptions _h() {
+        add("-h");
+        return this;
+    }
     //  --icon <file path>
     //          Path of the icon of the application package
     //          (absolute path or relative to the current directory)
+    public JPackageOptions __icon(Object filePath) {
+        add("--icon");
+        add(toArgumentString(filePath));
+        return this;
+    }
+
     //  --name -n <name>
     //          Name of the application and/or package
+    public JPackageOptions __names(Object name) {
+        add("--name");
+        add(toArgumentString(name));
+        return this;
+    }
+
+    public JPackageOptions _n(Object name) {
+        add("-n");
+        add(toArgumentString(name));
+        return this;
+    }
+
     //  --dest -d <destination path>
     //          Path where generated output file is placed
     //          (absolute path or relative to the current directory)
