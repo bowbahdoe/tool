@@ -5,7 +5,7 @@ import dev.mccue.tools.AbstractToolOperation;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
-public class Jar extends AbstractToolOperation<Jar, JarOptions> {
+public final class Jar extends AbstractToolOperation<Jar, JarOptions> {
     public Jar(ToolProvider toolProvider, JarOptions options) {
         super(toolProvider, options);
     }

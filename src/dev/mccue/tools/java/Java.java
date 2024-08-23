@@ -5,7 +5,7 @@ import dev.mccue.tools.AbstractToolOperation;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Java
+public final class Java
         extends AbstractToolOperation<Java, JavaOptions> {
     public Java(JavaOptions options) {
         super(List.of("java"), options);

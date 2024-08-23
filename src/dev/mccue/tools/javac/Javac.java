@@ -6,7 +6,7 @@ import dev.mccue.tools.ExitStatusException;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
-public class Javac extends AbstractToolOperation<Javac, JavacOptions> {
+public final class Javac extends AbstractToolOperation<Javac, JavacOptions> {
     public Javac(ToolProvider toolProvider, JavacOptions options) {
         super(toolProvider, options);
     }

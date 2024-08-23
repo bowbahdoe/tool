@@ -5,7 +5,7 @@ import dev.mccue.tools.AbstractToolOperation;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
-public class JLink
+public final class JLink
         extends AbstractToolOperation<JLink, JLinkOptions> {
     public JLink(ToolProvider toolProvider, JLinkOptions options) {
         super(toolProvider, options);

@@ -394,34 +394,127 @@ public class JavadocOptions extends ToolOptions {
     //                  Exclude the list of qualifiers from the output.
     //                  ':' can also be used anywhere in the argument as a separator.
     //    -nosince      Do not include @since information
+    public JavadocOptions noSince() {
+        add("-nosince");
+        return this;
+    }
+
     //    -notimestamp  Do not include hidden time stamp
+    public JavadocOptions noTimestamp() {
+        add("-notimestamp");
+        return this;
+    }
+
     //    -notree       Do not generate class hierarchy
+    public JavadocOptions noTree() {
+        add("-notree");
+        return this;
+    }
+
     //    --override-methods (detail|summary)
     //                  Document overridden methods in the detail or summary sections.
     //                  The default is 'detail'.
+    public enum OverrideMethods {
+        DETAIL("detail"),
+        SUMMARY("summary");
+
+        final String value;
+
+        OverrideMethods(String value) {
+            this.value = value;
+        }
+    }
+
+    public JavadocOptions overrideMethods(OverrideMethods overrideMethods) {
+        add("--override-methods");
+        add(overrideMethods.value);
+        return this;
+    }
+
+
     //    -overview <file>
     //                  Read overview documentation from HTML file
     //    -serialwarn   Generate warning about @serial tag
+    public JavadocOptions serialWarn() {
+        add("-serialwarn");
+        return this;
+    }
+
     //    --since <release>(,<release>)*
     //                  Document new and deprecated API in the specified releases
     //    --since-label <text>
     //                  Provide text to use in the heading of the "New API" page
+    public JavadocOptions sinceLabel(Object text) {
+        add("--since-label");
+        add(toArgumentString(text));
+        return this;
+    }
+
     //    --snippet-path <path>
     //                  The path for external snippets
+    public JavadocOptions snippetPath(Object path) {
+        add("--snippet-path");
+        add(toArgumentString(path));
+        return this;
+    }
+
     //    -sourcetab <tab length>
     //                  Specify the number of spaces each tab takes up in the source
+    public JavadocOptions sourceTab(Object tabLength) {
+        add("-sourcetab");
+        add(toArgumentString(tabLength));
+        return this;
+    }
+
     //    --spec-base-url
     //                  Specify a base URL for relative URLs in @spec tags
     //    -splitindex   Split index into one file per letter
+    public JavadocOptions splitIndex() {
+        add("-splitindex");
+        return this;
+    }
+
     //    -tag <name>:<locations>:<header>
     //                  Specify single argument custom tags
     //    -taglet       The fully qualified name of Taglet to register
+    public JavadocOptions taglet(Object name) {
+        add("-taglet");
+        add(toArgumentString(name));
+        return this;
+    }
+
     //    -tagletpath   The path to Taglets
+    public JavadocOptions tagletPath(Object path) {
+        add("-tagletpath");
+        add(toArgumentString(path));
+        return this;
+    }
+
     //    -top <html-code>
     //                  Include top text for each page
+    public JavadocOptions top(Object htmlCode) {
+        add("-top");
+        add(toArgumentString(htmlCode));
+        return this;
+    }
+
     //    -use          Create class and package usage pages
+    public JavadocOptions use() {
+        add("-use");
+        return this;
+    }
+
     //    -version      Include @version paragraphs
+    public JavadocOptions version() {
+        add("-version");
+        return this;
+    }
+
     //    -windowtitle <text>
     //                  Browser window title for the documentation
-
+    public JavadocOptions windowTitle(Object text) {
+        add("-windowtitle");
+        add(toArgumentString(text));
+        return this;
+    }
 }

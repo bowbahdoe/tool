@@ -5,7 +5,7 @@ import dev.mccue.tools.AbstractToolOperation;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
-public class Javadoc
+public final class Javadoc
         extends AbstractToolOperation<Javadoc, JavadocOptions> {
     public Javadoc(ToolProvider toolProvider, JavadocOptions options) {
         super(toolProvider, options);
