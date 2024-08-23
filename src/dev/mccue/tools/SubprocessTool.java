@@ -1,7 +1,6 @@
-package dev.mccue.tool;
+package dev.mccue.tools;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Arrays;

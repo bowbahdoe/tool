@@ -1,0 +1,35 @@
+project:
+  name: tool
+  version: 2024.08.23
+  description: Stage artifacts for publishing to a maven repository.
+  longDescription: Stage artifacts for publishing to a maven repository.
+  links:
+    homepage: https://github.com/bowbahdoe/tool
+  authors:
+    - Ethan McCue
+  license: APACHE-2.0
+  inceptionYear: 2024
+  versionPattern: CHRONVER
+  java:
+    mainModule: dev.mccue.tool
+    groupId: dev.mccue
+
+signing:
+  active: ALWAYS
+  armored: true
+
+deploy:
+  maven:
+    nexus2:
+      maven-central:
+        active: ALWAYS
+        url: https://s01.oss.sonatype.org/service/local
+        snapshotUrl: https://s01.oss.sonatype.org/content/repositories/snapshots/
+        closeRepository: false
+        releaseRepository: false
+        stagingRepositories:
+          - build/staging
+
+release:
+  github:
+    enabled: false

@@ -1,4 +1,4 @@
-package dev.mccue.tool;
+package dev.mccue.tools;
 
 import java.io.Serial;
 

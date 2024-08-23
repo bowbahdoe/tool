@@ -1,6 +1,5 @@
-package dev.mccue.tool;
+package dev.mccue.tools;
 
-import java.io.PrintStream;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;

@@ -1,6 +1,6 @@
-package dev.mccue.tool.javac;
+package dev.mccue.tools.javac;
 
-import dev.mccue.tool.ToolOptions;
+import dev.mccue.tools.ToolOptions;
 
 import java.io.File;
 import java.util.Arrays;

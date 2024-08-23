@@ -1,7 +1,7 @@
-package dev.mccue.tool.javac;
+package dev.mccue.tools.javac;
 
-import dev.mccue.tool.AbstractToolOperation;
-import dev.mccue.tool.ExitStatusException;
+import dev.mccue.tools.AbstractToolOperation;
+import dev.mccue.tools.ExitStatusException;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;

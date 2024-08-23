@@ -1,14 +1,8 @@
-package dev.mccue.tool.javadoc;
+package dev.mccue.tools.javadoc;
 
-import dev.mccue.tool.ExitStatusException;
-import dev.mccue.tool.ToolOptions;
-import dev.mccue.tool.javac.Javac;
-import dev.mccue.tool.javac.JavacOptions;
-import dev.mccue.tool.jlink.JLinkOptions;
+import dev.mccue.tools.ToolOptions;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

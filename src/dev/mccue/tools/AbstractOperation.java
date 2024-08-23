@@ -1,4 +1,4 @@
-package dev.mccue.tool;
+package dev.mccue.tools;
 
 /**
  * Provides common features across all operations

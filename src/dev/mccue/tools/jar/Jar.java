@@ -1,6 +1,6 @@
-package dev.mccue.tool.jar;
+package dev.mccue.tools.jar;
 
-import dev.mccue.tool.AbstractToolOperation;
+import dev.mccue.tools.AbstractToolOperation;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;

@@ -1,6 +1,6 @@
-package dev.mccue.tool.jpackage;
+package dev.mccue.tools.jpackage;
 
-import dev.mccue.tool.ToolOptions;
+import dev.mccue.tools.ToolOptions;
 
 public class JPackageOptions extends ToolOptions {
     static String toArgumentString(Object o) {
