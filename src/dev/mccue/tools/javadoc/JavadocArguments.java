@@ -1,7 +1,7 @@
 package dev.mccue.tools.javadoc;
 
-import dev.mccue.tools.ToolOptions;
-import dev.mccue.tools.java.JavaOptions;
+import dev.mccue.tools.ToolArguments;
+import dev.mccue.tools.java.JavaArguments;
 
 import java.io.File;
 import java.util.Arrays;
@@ -10,42 +10,42 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public final class JavadocOptions extends ToolOptions {
+public final class JavadocArguments extends ToolArguments {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
     }
 
-    public JavadocOptions() {
+    public JavadocArguments() {
         super();
     }
 
-    public JavadocOptions(Collection<? extends String> c) {
+    public JavadocArguments(Collection<? extends String> c) {
         super(c);
     }
 
     // Usage:
     //    javadoc [options] [packagenames] [sourcefiles] [@files]
     //where options include:
-    public JavadocOptions packageNames(Object... packageNames) {
+    public JavadocArguments packageNames(Object... packageNames) {
         return sourceFiles(Arrays.asList(packageNames));
     }
 
-    public JavadocOptions packageNames(List<?> packageNames) {
+    public JavadocArguments packageNames(List<?> packageNames) {
         packageNames.forEach(file -> add(toArgumentString(file)));
         return this;
     }
 
-    public JavadocOptions sourceFiles(Object... sourceFiles) {
+    public JavadocArguments sourceFiles(Object... sourceFiles) {
         return sourceFiles(Arrays.asList(sourceFiles));
     }
 
-    public JavadocOptions sourceFiles(List<?> sourceFiles) {
+    public JavadocArguments sourceFiles(List<?> sourceFiles) {
         sourceFiles.forEach(file -> add(toArgumentString(sourceFiles)));
         return this;
     }
 
     //    @<file>       Read options and filenames from file
-    public JavadocOptions argumentFile(Object filename) {
+    public JavadocArguments argumentFile(Object filename) {
         add("@" + toArgumentString(filename));
         return this;
     }
@@ -54,71 +54,71 @@ public final class JavadocOptions extends ToolOptions {
     //                  Root modules to resolve in addition to the initial modules,
     //                  or all modules on the module path if <module> is
     //                  ALL-MODULE-PATH.
-    public JavadocOptions addModules(Object... path) {
+    public JavadocArguments addModules(Object... path) {
         return addModules(Arrays.asList(path));
     }
 
-    public JavadocOptions addModules(List<?> path) {
+    public JavadocArguments addModules(List<?> path) {
         add("--add-modules");
-        add(path.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        add(path.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
     //    -bootclasspath <path>
     //                  Override location of platform class files used for non-modular
     //                  releases
-    public JavadocOptions bootClassPath(Object... path) {
+    public JavadocArguments bootClassPath(Object... path) {
         return bootClassPath(Arrays.asList(path));
     }
 
-    public JavadocOptions bootClassPath(List<?> path) {
+    public JavadocArguments bootClassPath(List<?> path) {
         add("--boot-class-path");
-        add(path.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        add(path.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
     //    -breakiterator
     //                  Compute first sentence with BreakIterator
-    public JavadocOptions _breakiterator() {
+    public JavadocArguments _breakiterator() {
         add("-breakiterator");
         return this;
     }
 
     //    --class-path <path>, -classpath <path>, -cp <path>
     //                  Specify where to find user class files
-    public JavadocOptions __class_path(Object... path) {
+    public JavadocArguments __class_path(Object... path) {
         return __class_path(Arrays.asList(path));
     }
 
-    public JavadocOptions __class_path(List<?> path) {
+    public JavadocArguments __class_path(List<?> path) {
         add("--class-path");
-        add(path.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        add(path.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
-    public JavadocOptions _classpath(Object... path) {
+    public JavadocArguments _classpath(Object... path) {
         return __class_path(Arrays.asList(path));
     }
 
-    public JavadocOptions _classpath(List<?> path) {
+    public JavadocArguments _classpath(List<?> path) {
         add("-classpath");
-        add(path.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        add(path.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
-    public JavadocOptions _cp(Object... path) {
+    public JavadocArguments _cp(Object... path) {
         return _cp(Arrays.asList(path));
     }
 
-    public JavadocOptions _cp(List<?> path) {
+    public JavadocArguments _cp(List<?> path) {
         add("-cp");
-        add(path.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        add(path.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
     //    -doclet <class>
     //                  Generate output via alternate doclet
-    public JavadocOptions _doclet(Object klass) {
+    public JavadocArguments _doclet(Object klass) {
         add("-doclet");
         add(toArgumentString(klass));
         return this;
@@ -126,7 +126,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -docletpath <path>
     //                  Specify where to find doclet class files
-    public JavadocOptions _docletpath(Object path) {
+    public JavadocArguments _docletpath(Object path) {
         add("-docletpath");
         add(toArgumentString(path));
         return this;
@@ -135,14 +135,14 @@ public final class JavadocOptions extends ToolOptions {
     //    --enable-preview
     //                  Enable preview language features. To be used in conjunction with
     //                  either -source or --release.
-    public JavadocOptions __enable_preview() {
+    public JavadocArguments __enable_preview() {
         add("--enable-preview");
         return this;
     }
 
     //    -encoding <name>
     //                  Source file encoding name
-    public JavadocOptions _encoding(Object name) {
+    public JavadocArguments _encoding(Object name) {
         add("-encoding");
         add(toArgumentString(name));
         return this;
@@ -150,12 +150,12 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -exclude <pkglist>
     //                  Specify a list of packages to exclude
-    public JavadocOptions _exclude(Object... pkglist) {
+    public JavadocArguments _exclude(Object... pkglist) {
         return _exclude(Arrays.asList(pkglist));
     }
 
-    public JavadocOptions _exclude(List<?> pkglist) {
-        add(pkglist.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(",")));
+    public JavadocArguments _exclude(List<?> pkglist) {
+        add(pkglist.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
@@ -166,7 +166,7 @@ public final class JavadocOptions extends ToolOptions {
     //                  will additionally include all "requires transitive"
     //                  dependencies of those modules. A value of "all" will include
     //                  all dependencies of those modules.
-    public JavadocOptions __expand_requires(Object value) {
+    public JavadocArguments __expand_requires(Object value) {
         add("--expand-requires");
         add(toArgumentString(value));
         return this;
@@ -174,51 +174,51 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -extdirs <dirlist>
     //                  Override location of installed extensions
-    public JavadocOptions _extdirs(Object... dirlist) {
+    public JavadocArguments _extdirs(Object... dirlist) {
         return _extdirs(Arrays.asList(dirlist));
     }
 
-    public JavadocOptions _extdirs(List<?> dirlist) {
-        add(dirlist.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+    public JavadocArguments _extdirs(List<?> dirlist) {
+        add(dirlist.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
     //    --help, -help, -?, -h
     //                  Display command-line options and exit
-    public JavadocOptions __help() {
+    public JavadocArguments __help() {
         add("--help");
         return this;
     }
 
-    public JavadocOptions _help() {
+    public JavadocArguments _help() {
         add("-help");
         return this;
     }
 
-    public JavadocOptions _h() {
+    public JavadocArguments _h() {
         add("-h");
         return this;
     }
     //    --help-extra, -X
     //                  Print a synopsis of nonstandard options and exit
-    public JavadocOptions __help_extra() {
+    public JavadocArguments __help_extra() {
         add("--help-extra");
         return this;
     }
 
-    public JavadocOptions _X() {
+    public JavadocArguments _X() {
         add("-X");
         return this;
     }
 
     //    -J<flag>      Pass <flag> directly to the runtime system
-    public JavadocOptions _J(Object flag) {
+    public JavadocArguments _J(Object flag) {
         add("-J" + toArgumentString(flag));
         return this;
     }
 
-    public JavadocOptions _J(Consumer<JavaOptions> consumer) {
-        var opts = new JavaOptions();
+    public JavadocArguments _J(Consumer<JavaArguments> consumer) {
+        var opts = new JavaArguments();
         consumer.accept(opts);
         opts.forEach(opt -> add("-J" + opt));
         return this;
@@ -226,59 +226,59 @@ public final class JavadocOptions extends ToolOptions {
 
     //    --limit-modules <module>(,<module>)*
     //                  Limit the universe of observable modules
-    public JavadocOptions __limit_modules(Object... dirlist) {
+    public JavadocArguments __limit_modules(Object... dirlist) {
         return __limit_modules(Arrays.asList(dirlist));
     }
 
-    public JavadocOptions __limit_modules(List<?> dirlist) {
-        add(dirlist.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+    public JavadocArguments __limit_modules(List<?> dirlist) {
+        add(dirlist.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
     //    -locale <name>
     //                  Locale to be used, e.g. en_US or en_US_WIN
-    public JavadocOptions _locale(Object name) {
+    public JavadocArguments _locale(Object name) {
         add(toArgumentString(name));
         return this;
     }
 
     //    --module <module>(,<module>)*
     //                  Document the specified module(s)
-    public JavadocOptions __module(Object... modules) {
+    public JavadocArguments __module(Object... modules) {
         return __module(Arrays.asList(modules));
     }
 
-    public JavadocOptions __module(List<?> modules) {
-        add(modules.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(",")));
+    public JavadocArguments __module(List<?> modules) {
+        add(modules.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
     //    --module-path <path>, -p <path>
     //                  Specify where to find application modules
-    public JavadocOptions __module_path(Object... paths) {
+    public JavadocArguments __module_path(Object... paths) {
         return __module_path(Arrays.asList(paths));
     }
 
-    public JavadocOptions __module_path(List<?> paths) {
-        add(paths.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+    public JavadocArguments __module_path(List<?> paths) {
+        add(paths.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
     //    --module-source-path <path>
     //                  Specify where to find input source files for multiple modules
-    public JavadocOptions __module_source_path(Object... paths) {
+    public JavadocArguments __module_source_path(Object... paths) {
         return __module_source_path(Arrays.asList(paths));
     }
 
-    public JavadocOptions __module_source_path(List<?> paths) {
-        add(paths.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+    public JavadocArguments __module_source_path(List<?> paths) {
+        add(paths.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
     //    -package
     //                  Show package/protected/public types and members. For
     //                  named modules, show all packages and all module details.
-    public JavadocOptions _package() {
+    public JavadocArguments _package() {
         add("-package");
         return this;
     }
@@ -286,7 +286,7 @@ public final class JavadocOptions extends ToolOptions {
     //    -private
     //                  Show all types and members. For named modules,
     //                  show all packages and all module details.
-    public JavadocOptions _private() {
+    public JavadocArguments _private() {
         add("-private");
         return this;
     }
@@ -294,7 +294,7 @@ public final class JavadocOptions extends ToolOptions {
     //    -protected
     //                  Show protected/public types and members (default). For
     //                  named modules, show exported packages and the module's API.
-    public JavadocOptions _protected() {
+    public JavadocArguments _protected() {
         add("-protected");
         return this;
     }
@@ -302,20 +302,20 @@ public final class JavadocOptions extends ToolOptions {
     //    -public
     //                  Show only public types and members. For named modules,
     //                  show exported packages and the module's API.
-    public JavadocOptions _public() {
+    public JavadocArguments _public() {
         add("-public");
         return this;
     }
 
     //    -quiet        Do not display status messages
-    public JavadocOptions _quiet() {
+    public JavadocArguments _quiet() {
         add("-quiet");
         return this;
     }
 
     //    --release <release>
     //                  Provide source compatibility with specified release
-    public JavadocOptions __release() {
+    public JavadocArguments __release() {
         add("--release");
         return this;
     }
@@ -345,7 +345,7 @@ public final class JavadocOptions extends ToolOptions {
         }
     }
 
-    public JavadocOptions __show_members(ShowMembers showMembers) {
+    public JavadocArguments __show_members(ShowMembers showMembers) {
         add("--show-members");
         add(toArgumentString(showMembers));
         return this;
@@ -370,7 +370,7 @@ public final class JavadocOptions extends ToolOptions {
         }
     }
 
-    public JavadocOptions __show_module_contents(ShowModuleContents showModuleContents) {
+    public JavadocArguments __show_module_contents(ShowModuleContents showModuleContents) {
         add("--show-module-contents");
         add(toArgumentString(showModuleContents));
         return this;
@@ -395,7 +395,7 @@ public final class JavadocOptions extends ToolOptions {
         }
     }
 
-    public JavadocOptions __show_packages(ShowPackages value) {
+    public JavadocArguments __show_packages(ShowPackages value) {
         add("--show-packages");
         add(toArgumentString(value));
         return this;
@@ -426,14 +426,14 @@ public final class JavadocOptions extends ToolOptions {
         }
     }
 
-    public JavadocOptions __show_types(ShowTypes value) {
+    public JavadocArguments __show_types(ShowTypes value) {
         add("--show-types");
         add(toArgumentString(value));
         return this;
     }
     //    --source <release>, -source <release>
     //                  Provide source compatibility with specified release
-    public JavadocOptions source(Object release) {
+    public JavadocArguments source(Object release) {
         add("--source");
         add(toArgumentString(release));
         return this;
@@ -445,7 +445,7 @@ public final class JavadocOptions extends ToolOptions {
     //                  Specify subpackages to recursively load
     //    --system <jdk>
     //                  Override location of system modules used for modular releases
-    public JavadocOptions __system(Object jdk) {
+    public JavadocArguments __system(Object jdk) {
         add("--system");
         add(toArgumentString(jdk));
         return this;
@@ -453,26 +453,26 @@ public final class JavadocOptions extends ToolOptions {
 
     //    --upgrade-module-path <path>
     //                  Override location of upgradeable modules
-    public JavadocOptions __upgrade_module_path(Object path) {
+    public JavadocArguments __upgrade_module_path(Object path) {
         add("--upgrade-module-path");
         add(toArgumentString(path));
         return this;
     }
 
     //    -verbose      Output messages about what Javadoc is doing
-    public JavadocOptions _verbose() {
+    public JavadocArguments _verbose() {
         add("-verbose");
         return this;
     }
 
     //    --version     Print version information
-    public JavadocOptions __version() {
+    public JavadocArguments __version() {
         add("--version");
         return this;
     }
 
     //    -Werror       Report an error if any warnings occur
-    public JavadocOptions _Werror() {
+    public JavadocArguments _Werror() {
         add("-Werror");
         return this;
     }
@@ -481,7 +481,7 @@ public final class JavadocOptions extends ToolOptions {
     //Provided by the Standard doclet:
     //    --add-script <file>
     //                  Add a script file to the generated documentation
-    public JavadocOptions __add_script(Object file) {
+    public JavadocArguments __add_script(Object file) {
         add("--add-script");
         add(toArgumentString(file));
         return this;
@@ -489,7 +489,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    --add-stylesheet <file>
     //                  Add a stylesheet file to the generated documentation
-    public JavadocOptions __add_stylesheet(Object file) {
+    public JavadocArguments __add_stylesheet(Object file) {
         add("--add-stylesheet");
         add(toArgumentString(file));
         return this;
@@ -497,20 +497,20 @@ public final class JavadocOptions extends ToolOptions {
 
     //    --allow-script-in-comments
     //                  Allow JavaScript in options and comments
-    public JavadocOptions __allow_script_in_comments() {
+    public JavadocArguments __allow_script_in_comments() {
         add("--allow-script-in-comments");
         return this;
     }
 
     //    -author       Include @author paragraphs
-    public JavadocOptions _author() {
+    public JavadocArguments _author() {
         add("-author");
         return this;
     }
 
     //    -bottom <html-code>
     //                  Include bottom text for each page
-    public JavadocOptions _bottom(Object htmlCode) {
+    public JavadocArguments _bottom(Object htmlCode) {
         add("-bottom");
         add(toArgumentString(htmlCode));
         return this;
@@ -518,7 +518,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -charset <charset>
     //                  Charset for cross-platform viewing of generated documentation
-    public JavadocOptions _charset(Object charset) {
+    public JavadocArguments _charset(Object charset) {
         add("-charset");
         add(toArgumentString(charset));
         return this;
@@ -526,7 +526,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -d <directory>
     //                  Destination directory for output files
-    public JavadocOptions _d(Object directory) {
+    public JavadocArguments _d(Object directory) {
         add("-d");
         add(toArgumentString(directory));
         return this;
@@ -534,21 +534,21 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -docencoding <name>
     //                  Specify the character encoding for the output
-    public JavadocOptions docencoding(Object name) {
+    public JavadocArguments docencoding(Object name) {
         add("-docencoding");
         add(toArgumentString(name));
         return this;
     }
     //    -docfilessubdirs
     //                  Recursively copy doc-file subdirectories
-    public JavadocOptions _docfilessubdirs() {
+    public JavadocArguments _docfilessubdirs() {
         add("-docfilessubdirs");
         return this;
     }
 
     //    -doctitle <html-code>
     //                  Include title for the overview page
-    public JavadocOptions _doctitle(Object htmlCode) {
+    public JavadocArguments _doctitle(Object htmlCode) {
         add("-doctitle");
         add(toArgumentString(htmlCode));
         return this;
@@ -557,18 +557,18 @@ public final class JavadocOptions extends ToolOptions {
     //    -excludedocfilessubdir <name>,<name>,...
     //                  Exclude any doc-files subdirectories with given name.
     //                  ':' can also be used anywhere in the argument as a separator.
-    public JavadocOptions _excludedocfilessubdir(Object... names) {
+    public JavadocArguments _excludedocfilessubdir(Object... names) {
         return _excludedocfilessubdir(Arrays.asList(names));
     }
 
-    public JavadocOptions _excludedocfilessubdir(List<?> names) {
-        names.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(","));
+    public JavadocArguments _excludedocfilessubdir(List<?> names) {
+        names.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(","));
         return this;
     }
 
     //    -footer <html-code>
     //                  Include footer text for each page
-    public JavadocOptions _footer(Object htmlCode) {
+    public JavadocArguments _footer(Object htmlCode) {
         add("-footer");
         add(toArgumentString(htmlCode));
         return this;
@@ -577,20 +577,20 @@ public final class JavadocOptions extends ToolOptions {
     //    -group <name> <g1>,<g2>...
     //                  Group specified elements together in overview page.
     //                  ':' can also be used anywhere in the argument as a separator.
-    public JavadocOptions _group(Object name, Object... groups) {
+    public JavadocArguments _group(Object name, Object... groups) {
         return _group(name, Arrays.asList(groups));
     }
 
-    public JavadocOptions _group(Object name, List<?> groups) {
+    public JavadocArguments _group(Object name, List<?> groups) {
         add("-group");
         add(toArgumentString(name));
-        add(groups.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(",")));
+        add(groups.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
     //    -header <html-code>
     //                  Include header text for each page
-    public JavadocOptions _header(Object htmlCode) {
+    public JavadocArguments _header(Object htmlCode) {
         add("-header");
         add(toArgumentString(htmlCode));
         return this;
@@ -598,7 +598,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -helpfile <file>
     //                  Include file that help link links to
-    public JavadocOptions _helpfile(Object file) {
+    public JavadocArguments _helpfile(Object file) {
         add("-helpfile");
         add(toArgumentString(file));
         return this;
@@ -608,13 +608,13 @@ public final class JavadocOptions extends ToolOptions {
     //    --javafx, -javafx
     //                  Enable JavaFX functionality
     //    -keywords     Include HTML meta tags with package, class and member info
-    public JavadocOptions _keywords() {
+    public JavadocArguments _keywords() {
         add("-keywords");
         return this;
     }
 
     //    -link <url>   Create links to javadoc output at <url>
-    public JavadocOptions _link(Object url) {
+    public JavadocArguments _link(Object url) {
         add("-link");
         add(toArgumentString(url));
         return this;
@@ -635,7 +635,7 @@ public final class JavadocOptions extends ToolOptions {
         }
     }
 
-    public JavadocOptions __link_modularity_mismatch(LinkModularityMismatch linkModularityMismatch) {
+    public JavadocArguments __link_modularity_mismatch(LinkModularityMismatch linkModularityMismatch) {
         add("--link-modularity-mismatch");
         add(linkModularityMismatch.value);
         return this;
@@ -643,7 +643,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -linkoffline <url1> <url2>
     //                  Link to docs at <url1> using package list at <url2>
-    public JavadocOptions _linkoffline(Object url1, Object url2) {
+    public JavadocArguments _linkoffline(Object url1, Object url2) {
         add("-linkoffline");
         add(toArgumentString(url1));
         add(toArgumentString(url2));
@@ -655,13 +655,13 @@ public final class JavadocOptions extends ToolOptions {
     //    -linksource   Generate source in HTML
     //    --main-stylesheet <file>, -stylesheetfile <file>
     //                  File to change style of the generated documentation
-    public JavadocOptions __main_stylesheet(Object file) {
+    public JavadocArguments __main_stylesheet(Object file) {
         add("--main-stylesheet");
         add(toArgumentString(file));
         return this;
     }
 
-    public JavadocOptions _stylesheetfile(Object file) {
+    public JavadocArguments _stylesheetfile(Object file) {
         add("-stylesheetfile");
         add(toArgumentString(file));
         return this;
@@ -677,7 +677,7 @@ public final class JavadocOptions extends ToolOptions {
     //    -nonavbar     Do not generate navigation bar
     //    --no-platform-links
     //                  Do not generate links to the platform documentation
-    public JavadocOptions __no_platform_links(Object... names) {
+    public JavadocArguments __no_platform_links(Object... names) {
         add("--no-platform-links");
         return this;
     }
@@ -685,29 +685,29 @@ public final class JavadocOptions extends ToolOptions {
     //    -noqualifier <name1>,<name2>,...
     //                  Exclude the list of qualifiers from the output.
     //                  ':' can also be used anywhere in the argument as a separator.
-    public JavadocOptions _noqualifier(Object... names) {
+    public JavadocArguments _noqualifier(Object... names) {
         return _noqualifier(Arrays.asList(names));
     }
 
-    public JavadocOptions _noqualifier(List<?> names) {
+    public JavadocArguments _noqualifier(List<?> names) {
         add("-noqualifier");
-        add(names.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(",")));
+        add(names.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
     //    -nosince      Do not include @since information
-    public JavadocOptions _nosince() {
+    public JavadocArguments _nosince() {
         add("-nosince");
         return this;
     }
 
     //    -notimestamp  Do not include hidden time stamp
-    public JavadocOptions _notimestamp() {
+    public JavadocArguments _notimestamp() {
         add("-notimestamp");
         return this;
     }
 
     //    -notree       Do not generate class hierarchy
-    public JavadocOptions _notree() {
+    public JavadocArguments _notree() {
         add("-notree");
         return this;
     }
@@ -726,7 +726,7 @@ public final class JavadocOptions extends ToolOptions {
         }
     }
 
-    public JavadocOptions __override_methods(OverrideMethods overrideMethods) {
+    public JavadocArguments __override_methods(OverrideMethods overrideMethods) {
         add("--override-methods");
         add(overrideMethods.value);
         return this;
@@ -734,32 +734,32 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -overview <file>
     //                  Read overview documentation from HTML file
-    public JavadocOptions _overview(Object file) {
+    public JavadocArguments _overview(Object file) {
         add("-overview");
         add(toArgumentString(file));
         return this;
     }
 
     //    -serialwarn   Generate warning about @serial tag
-    public JavadocOptions _serialwarn() {
+    public JavadocArguments _serialwarn() {
         add("-serialwarn");
         return this;
     }
 
     //    --since <release>(,<release>)*
     //                  Document new and deprecated API in the specified releases
-    public JavadocOptions __since(Object... releases) {
+    public JavadocArguments __since(Object... releases) {
         return __since(Arrays.asList(releases));
     }
 
-    public JavadocOptions __since(List<?> releases) {
-        add(releases.stream().map(JavadocOptions::toArgumentString).collect(Collectors.joining(",")));
+    public JavadocArguments __since(List<?> releases) {
+        add(releases.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
     //    --since-label <text>
     //                  Provide text to use in the heading of the "New API" page
-    public JavadocOptions __since_label(Object text) {
+    public JavadocArguments __since_label(Object text) {
         add("--since-label");
         add(toArgumentString(text));
         return this;
@@ -767,7 +767,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    --snippet-path <path>
     //                  The path for external snippets
-    public JavadocOptions __snippet_path(Object path) {
+    public JavadocArguments __snippet_path(Object path) {
         add("--snippet-path");
         add(toArgumentString(path));
         return this;
@@ -775,7 +775,7 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -sourcetab <tab length>
     //                  Specify the number of spaces each tab takes up in the source
-    public JavadocOptions _sourcetab(Object tabLength) {
+    public JavadocArguments _sourcetab(Object tabLength) {
         add("-sourcetab");
         add(toArgumentString(tabLength));
         return this;
@@ -784,28 +784,28 @@ public final class JavadocOptions extends ToolOptions {
     //    --spec-base-url
     //                  Specify a base URL for relative URLs in @spec tags
     //    -splitindex   Split index into one file per letter
-    public JavadocOptions _splitindex() {
+    public JavadocArguments _splitindex() {
         add("-splitindex");
         return this;
     }
 
     //    -tag <name>:<locations>:<header>
     //                  Specify single argument custom tags
-    public JavadocOptions _tag(Object name, Object locations, Object header) {
+    public JavadocArguments _tag(Object name, Object locations, Object header) {
         add("-tag");
         add(toArgumentString(name) + ":" + toArgumentString(locations) + ":" + toArgumentString(header));
         return this;
     }
 
     //    -taglet       The fully qualified name of Taglet to register
-    public JavadocOptions _taglet(Object name) {
+    public JavadocArguments _taglet(Object name) {
         add("-taglet");
         add(toArgumentString(name));
         return this;
     }
 
     //    -tagletpath   The path to Taglets
-    public JavadocOptions _tagletpath(Object path) {
+    public JavadocArguments _tagletpath(Object path) {
         add("-tagletpath");
         add(toArgumentString(path));
         return this;
@@ -813,27 +813,27 @@ public final class JavadocOptions extends ToolOptions {
 
     //    -top <html-code>
     //                  Include top text for each page
-    public JavadocOptions _top(Object htmlCode) {
+    public JavadocArguments _top(Object htmlCode) {
         add("-top");
         add(toArgumentString(htmlCode));
         return this;
     }
 
     //    -use          Create class and package usage pages
-    public JavadocOptions _use() {
+    public JavadocArguments _use() {
         add("-use");
         return this;
     }
 
     //    -version      Include @version paragraphs
-    public JavadocOptions _version() {
+    public JavadocArguments _version() {
         add("-version");
         return this;
     }
 
     //    -windowtitle <text>
     //                  Browser window title for the documentation
-    public JavadocOptions _windowtitle(Object text) {
+    public JavadocArguments _windowtitle(Object text) {
         add("-windowtitle");
         add(toArgumentString(text));
         return this;

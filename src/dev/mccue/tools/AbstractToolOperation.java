@@ -1,30 +1,28 @@
 package dev.mccue.tools;
 
-import java.util.List;
 import java.util.function.Consumer;
-import java.util.spi.ToolProvider;
 
 public abstract class AbstractToolOperation<
-        Self extends AbstractToolOperation<Self, Options>,
-        Options extends ToolOptions
+        Self extends AbstractToolOperation<Self, Arguments>,
+        Arguments extends ToolArguments
         >
         extends AbstractOperation<Self> {
-    protected final Options options;
+    protected final Arguments arguments;
     protected final Tool tool;
     private Consumer<String> logger
             = System.err::println;
 
     protected AbstractToolOperation(
             Tool tool,
-            Options options
+            Arguments arguments
     ) {
         this.tool = tool;
-        this.options = options;
+        this.arguments = arguments;
     }
 
     @Override
     public void execute() throws ExitStatusException {
-        var args = options.toArray(String[]::new);
+        var args = arguments.toArray(String[]::new);
         if (!silent()) {
             tool.log(logger, args);
         }

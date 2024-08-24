@@ -9,7 +9,7 @@ compile: clean
       --class-path "libs/*" \
       -g \
       --release 21 \
-      --module-version 2024.08.23.2 \
+      --module-version 2024.08.24 \
       -d build/javac \
       $(find ./src -name "*.java" -type f)
 

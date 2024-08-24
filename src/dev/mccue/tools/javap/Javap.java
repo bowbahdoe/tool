@@ -6,32 +6,32 @@ import dev.mccue.tools.Tool;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
-public final class Javap extends AbstractToolOperation<Javap, JavapOptions> {
-    public Javap(ToolProvider toolProvider, JavapOptions options) {
+public final class Javap extends AbstractToolOperation<Javap, JavapArguments> {
+    public Javap(ToolProvider toolProvider, JavapArguments options) {
         super(Tool.ofToolProvider(toolProvider), options);
     }
 
-    public Javap(JavapOptions options) {
+    public Javap(JavapArguments arguments) {
         super(
                 Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
-                options
+                arguments
         );
     }
 
-    public Javap(Consumer<? super JavapOptions> consumer) {
-        this(new JavapOptions());
-        consumer.accept(this.options);
+    public Javap(Consumer<? super JavapArguments> consumer) {
+        this(new JavapArguments());
+        consumer.accept(this.arguments);
     }
 
-    public static void execute(ToolProvider toolProvider, JavapOptions options) throws Exception {
-        new Javap(toolProvider, options).execute();
+    public static void execute(ToolProvider toolProvider, JavapArguments arguments) throws Exception {
+        new Javap(toolProvider, arguments).execute();
     }
 
-    public static void execute(JavapOptions options) throws Exception {
-        new Javap(options).execute();
+    public static void execute(JavapArguments arguments) throws Exception {
+        new Javap(arguments).execute();
     }
 
-    public static void execute(Consumer<? super JavapOptions> consumer) throws Exception {
+    public static void execute(Consumer<? super JavapArguments> consumer) throws Exception {
         new Javap(consumer).execute();
     }
 }

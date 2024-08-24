@@ -7,36 +7,36 @@ import dev.mccue.tools.Tool;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
-public final class Javac extends AbstractToolOperation<Javac, JavacOptions> {
-    public Javac(ToolProvider toolProvider, JavacOptions options) {
-        super(Tool.ofToolProvider(toolProvider), options);
+public final class Javac extends AbstractToolOperation<Javac, JavacArguments> {
+    public Javac(ToolProvider toolProvider, JavacArguments arguments) {
+        super(Tool.ofToolProvider(toolProvider), arguments);
     }
 
-    public Javac(JavacOptions options) {
+    public Javac(JavacArguments arguments) {
         super(
                 Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
-                options
+                arguments
         );
     }
 
     public Javac() {
-        this(new JavacOptions());
+        this(new JavacArguments());
     }
 
-    public Javac(Consumer<? super JavacOptions> consumer) {
-        this(new JavacOptions());
-        consumer.accept(this.options);
+    public Javac(Consumer<? super JavacArguments> consumer) {
+        this(new JavacArguments());
+        consumer.accept(this.arguments);
     }
 
-    public static void execute(ToolProvider toolProvider, JavacOptions options) throws ExitStatusException {
-        new Javac(toolProvider, options).execute();
+    public static void execute(ToolProvider toolProvider, JavacArguments arguments) throws ExitStatusException {
+        new Javac(toolProvider, arguments).execute();
     }
 
-    public static void execute(JavacOptions options) throws ExitStatusException {
-        new Javac(options).execute();
+    public static void execute(JavacArguments arguments) throws ExitStatusException {
+        new Javac(arguments).execute();
     }
 
-    public static void execute(Consumer<? super JavacOptions> consumer) throws ExitStatusException {
+    public static void execute(Consumer<? super JavacArguments> consumer) throws ExitStatusException {
         new Javac(consumer).execute();
     }
 }

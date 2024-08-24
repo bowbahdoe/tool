@@ -1,24 +1,22 @@
 package dev.mccue.tools.jlink;
 
-import dev.mccue.tools.ToolOptions;
-import dev.mccue.tools.javac.JavacOptions;
+import dev.mccue.tools.ToolArguments;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class JLinkOptions extends ToolOptions {
+public final class JLinkArguments extends ToolArguments {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
     }
 
-    public JLinkOptions() {
+    public JLinkArguments() {
         super();
     }
 
-    public JLinkOptions(Collection<? extends String> c) {
+    public JLinkArguments(Collection<? extends String> c) {
         super(c);
     }
 
@@ -26,19 +24,19 @@ public final class JLinkOptions extends ToolOptions {
 //Possible options include:
 //      --add-modules <mod>[,<mod>...]    Root modules to resolve in addition to the
 //                                        initial modules. <mod> can also be ALL-MODULE-PATH.
-    public JLinkOptions __add_modules(Object... path) {
+    public JLinkArguments __add_modules(Object... path) {
         return __add_modules(Arrays.asList(path));
     }
 
-    public JLinkOptions __add_modules(List<?> path) {
+    public JLinkArguments __add_modules(List<?> path) {
         add("--add-modules");
-        add(path.stream().map(JLinkOptions::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        add(path.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
     //      --bind-services                   Link in service provider modules and
     //                                        their dependences
-    public JLinkOptions __bind_services() {
+    public JLinkArguments __bind_services() {
         add("--bind-services");
         return this;
     }
@@ -52,14 +50,14 @@ public final class JLinkOptions extends ToolOptions {
 //                                        0:  No compression. Equivalent to zip-0.
 //                                        1:  Constant String Sharing
 //                                        2:  Equivalent to zip-6.
-    public JLinkOptions __compress(Object value) {
+    public JLinkArguments __compress(Object value) {
         add("--compress");
         add(toArgumentString(value));
         return this;
     }
 
     //      --disable-plugin <pluginname>     Disable the plugin mentioned
-    public JLinkOptions __disable_plugin(Object pluginName) {
+    public JLinkArguments __disable_plugin(Object pluginName) {
         add("--disable-plugin");
         add(toArgumentString(pluginName));
         return this;
@@ -73,7 +71,7 @@ public final class JLinkOptions extends ToolOptions {
         NATIVE
     }
 
-    public JLinkOptions __endian(Endianness endianness) {
+    public JLinkArguments __endian(Endianness endianness) {
         switch (endianness) {
             case LITTLE -> {
                 add("--endian");
@@ -91,12 +89,12 @@ public final class JLinkOptions extends ToolOptions {
 
 
 //  -h, --help, -?                        Print this help message
-    public JLinkOptions _h() {
+    public JLinkArguments _h() {
         add("-h");
         return this;
     }
 
-    public JLinkOptions __help() {
+    public JLinkArguments __help() {
         add("--help");
         return this;
     }
@@ -106,7 +104,7 @@ public final class JLinkOptions extends ToolOptions {
 //                                        The signature related files of the
 //                                        signed modular JARs are not copied to
 //                                        the runtime image.
-    public JLinkOptions __ignore_signing_information() {
+    public JLinkArguments __ignore_signing_information() {
         add("--ignore-signing-information");
         return this;
     }
@@ -115,13 +113,13 @@ public final class JLinkOptions extends ToolOptions {
 //                                        Add a launcher command of the given
 //                                        name for the module and the main class
 //                                        if specified
-    public JLinkOptions __launcher(Object name, Object module) {
+    public JLinkArguments __launcher(Object name, Object module) {
         add("--launcher");
         add(toArgumentString(name) + "=" + toArgumentString(module));
         return this;
     }
 
-    public JLinkOptions __launcher(Object name, Object module, Object mainClass) {
+    public JLinkArguments __launcher(Object name, Object module, Object mainClass) {
         add("--launcher");
         add(toArgumentString(name) + "=" + toArgumentString(module) + "/" + toArgumentString(mainClass));
         return this;
@@ -129,17 +127,17 @@ public final class JLinkOptions extends ToolOptions {
 
 //      --limit-modules <mod>[,<mod>...]  Limit the universe of observable
 //                                        modules
-    public JLinkOptions __limit_modules(Object... modules) {
+    public JLinkArguments __limit_modules(Object... modules) {
         return __limit_modules(Arrays.asList(modules));
     }
 
-    public JLinkOptions __limit_modules(List<?> modules) {
+    public JLinkArguments __limit_modules(List<?> modules) {
         add("--limit-modules");
-        add(modules.stream().map(JLinkOptions::toArgumentString).collect(Collectors.joining(",")));
+        add(modules.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 //      --list-plugins                    List available plugins
-    public JLinkOptions __link_plugins() {
+    public JLinkArguments __link_plugins() {
         add("--list-plugins");
         return this;
     }
@@ -150,91 +148,91 @@ public final class JLinkOptions extends ToolOptions {
 //                                        but it does not contain the java.base module,
 //                                        the JDKs jmods directory will be added,
 //                                        if it exists.
-    public JLinkOptions __module_path(Object... modules) {
+    public JLinkArguments __module_path(Object... modules) {
         return __module_path(Arrays.asList(modules));
     }
 
-    public JLinkOptions __module_path(List<?> modules) {
+    public JLinkArguments __module_path(List<?> modules) {
         add("--module-path");
-        add(modules.stream().map(JLinkOptions::toArgumentString).collect(Collectors.joining(",")));
+        add(modules.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
-    public JLinkOptions _p(Object... modules) {
+    public JLinkArguments _p(Object... modules) {
         return _p(Arrays.asList(modules));
     }
 
-    public JLinkOptions _p(List<?> modules) {
+    public JLinkArguments _p(List<?> modules) {
         add("-p");
-        add(modules.stream().map(JLinkOptions::toArgumentString).collect(Collectors.joining(",")));
+        add(modules.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 //      --no-header-files                 Exclude include header files
-    public JLinkOptions __no_header_files() {
+    public JLinkArguments __no_header_files() {
         add("--no-header-files");
         return this;
     }
 
 //      --no-man-pages                    Exclude man pages
-    public JLinkOptions __no_man_pages() {
+    public JLinkArguments __no_man_pages() {
         add("--no-man-pages");
         return this;
     }
 
 //      --output <path>                   Location of output path
-    public JLinkOptions __output(Object path) {
+    public JLinkArguments __output(Object path) {
         add("--output");
         add(toArgumentString(path));
         return this;
     }
 
 //      --save-opts <filename>            Save jlink options in the given file
-    public JLinkOptions __save_opts(Object filename) {
+    public JLinkArguments __save_opts(Object filename) {
         add("--save-opts");
         add(toArgumentString(filename));
         return this;
     }
 //  -G, --strip-debug                     Strip debug information
-    public JLinkOptions _G() {
+    public JLinkArguments _G() {
         add("-G");
         return this;
     }
 
-    public JLinkOptions __strip_debug() {
+    public JLinkArguments __strip_debug() {
         add("--strip-debug");
         return this;
     }
 
 //      --suggest-providers [<name>,...]  Suggest providers that implement the
 //                                        given service types from the module path
-    public JLinkOptions __suggest_providers(Object... names) {
+    public JLinkArguments __suggest_providers(Object... names) {
         return __suggest_providers(Arrays.asList(names));
     }
 
-    public JLinkOptions __suggest_providers(List<?> names) {
-        add(names.stream().map(JLinkOptions::toArgumentString).collect(Collectors.joining(",")));
+    public JLinkArguments __suggest_providers(List<?> names) {
+        add(names.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
 
 //  -v, --verbose                         Enable verbose tracing
-    public JLinkOptions _v() {
+    public JLinkArguments _v() {
         add("-v");
         return this;
     }
 
-    public JLinkOptions __verbose() {
+    public JLinkArguments __verbose() {
         add("--verbose");
         return this;
     }
 
 //      --version                         Version information
-    public JLinkOptions __version() {
+    public JLinkArguments __version() {
         add("--version");
         return this;
     }
 
     //      @<filename>                       Read options from file
-    public JLinkOptions argumentFile(Object filename) {
+    public JLinkArguments argumentFile(Object filename) {
         add("@" + toArgumentString(filename));
         return this;
     }

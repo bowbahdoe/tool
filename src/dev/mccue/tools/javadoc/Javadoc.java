@@ -7,32 +7,32 @@ import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 public final class Javadoc
-        extends AbstractToolOperation<Javadoc, JavadocOptions> {
-    public Javadoc(ToolProvider toolProvider, JavadocOptions options) {
-        super(Tool.ofToolProvider(toolProvider), options);
+        extends AbstractToolOperation<Javadoc, JavadocArguments> {
+    public Javadoc(ToolProvider toolProvider, JavadocArguments arguments) {
+        super(Tool.ofToolProvider(toolProvider), arguments);
     }
 
-    public Javadoc(JavadocOptions options) {
+    public Javadoc(JavadocArguments arguments) {
         super(
                 Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
-                options
+                arguments
         );
     }
 
-    public Javadoc(Consumer<? super JavadocOptions> consumer) {
-        this(new JavadocOptions());
-        consumer.accept(this.options);
+    public Javadoc(Consumer<? super JavadocArguments> consumer) {
+        this(new JavadocArguments());
+        consumer.accept(this.arguments);
     }
 
-    public static void execute(ToolProvider toolProvider, JavadocOptions options) throws Exception {
-        new Javadoc(toolProvider, options).execute();
+    public static void execute(ToolProvider toolProvider, JavadocArguments arguments) throws Exception {
+        new Javadoc(toolProvider, arguments).execute();
     }
 
-    public static void execute(JavadocOptions options) throws Exception {
-        new Javadoc(options).execute();
+    public static void execute(JavadocArguments arguments) throws Exception {
+        new Javadoc(arguments).execute();
     }
 
-    public static void execute(Consumer<? super JavadocOptions> consumer) throws Exception {
+    public static void execute(Consumer<? super JavadocArguments> consumer) throws Exception {
         new Javadoc(consumer).execute();
     }
 }
