@@ -1,6 +1,7 @@
 package dev.mccue.tools.jlink;
 
 import dev.mccue.tools.AbstractToolOperation;
+import dev.mccue.tools.Tool;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
@@ -8,11 +9,16 @@ import java.util.spi.ToolProvider;
 public final class JLink
         extends AbstractToolOperation<JLink, JLinkOptions> {
     public JLink(ToolProvider toolProvider, JLinkOptions options) {
-        super(toolProvider, options);
+        super(Tool.ofToolProvider(toolProvider), options);
     }
 
     public JLink(JLinkOptions options) {
-        super(ToolProvider.findFirst("jlink").orElseThrow(), options);
+        super(
+                Tool.ofToolProvider(
+                        ToolProvider.findFirst("jlink").orElseThrow()
+                ),
+                options
+        );
     }
 
     public JLink(Consumer<? super JLinkOptions> consumer) {

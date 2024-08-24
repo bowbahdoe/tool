@@ -1,6 +1,7 @@
 package dev.mccue.tools.javadoc;
 
 import dev.mccue.tools.AbstractToolOperation;
+import dev.mccue.tools.Tool;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
@@ -8,12 +9,12 @@ import java.util.spi.ToolProvider;
 public final class Javadoc
         extends AbstractToolOperation<Javadoc, JavadocOptions> {
     public Javadoc(ToolProvider toolProvider, JavadocOptions options) {
-        super(toolProvider, options);
+        super(Tool.ofToolProvider(toolProvider), options);
     }
 
     public Javadoc(JavadocOptions options) {
         super(
-                ToolProvider.findFirst("javac").orElseThrow(),
+                Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
                 options
         );
     }

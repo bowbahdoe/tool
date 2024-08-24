@@ -2,18 +2,19 @@ package dev.mccue.tools.javac;
 
 import dev.mccue.tools.AbstractToolOperation;
 import dev.mccue.tools.ExitStatusException;
+import dev.mccue.tools.Tool;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 public final class Javac extends AbstractToolOperation<Javac, JavacOptions> {
     public Javac(ToolProvider toolProvider, JavacOptions options) {
-        super(toolProvider, options);
+        super(Tool.ofToolProvider(toolProvider), options);
     }
 
     public Javac(JavacOptions options) {
         super(
-                ToolProvider.findFirst("javac").orElseThrow(),
+                Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
                 options
         );
     }

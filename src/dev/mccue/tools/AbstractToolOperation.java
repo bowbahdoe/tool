@@ -15,18 +15,10 @@ public abstract class AbstractToolOperation<
             = System.err::println;
 
     protected AbstractToolOperation(
-            ToolProvider toolProvider,
+            Tool tool,
             Options options
     ) {
-        this.tool = Tool.ofToolProvider(toolProvider);
-        this.options = options;
-    }
-
-    protected AbstractToolOperation(
-            List<String> commandPrefix,
-            Options options
-    ) {
-        this.tool = Tool.ofSubprocess(commandPrefix);
+        this.tool = tool;
         this.options = options;
     }
 
