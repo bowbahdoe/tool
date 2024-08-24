@@ -291,7 +291,7 @@ public final class JavacArguments extends ToolArguments {
 
 //  --module-source-path <module-source-path>
 //        Specify where to find input source files for multiple modules
-    public JavacArguments __module_source_pat(Object moduleSourcePath) {
+    public JavacArguments __module_source_path(Object moduleSourcePath) {
         add("--module-source-path");
         add(toArgumentString(moduleSourcePath));
         return this;
