@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 public final class Javap extends AbstractToolOperation<Javap, JavapArguments> {
-    public Javap(ToolProvider toolProvider, JavapArguments options) {
-        super(Tool.ofToolProvider(toolProvider), options);
+    public Javap(ToolProvider toolProvider, JavapArguments arguments) {
+        super(Tool.ofToolProvider(toolProvider),  arguments);
     }
 
     public Javap(JavapArguments arguments) {

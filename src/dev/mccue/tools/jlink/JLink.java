@@ -8,16 +8,16 @@ import java.util.spi.ToolProvider;
 
 public final class JLink
         extends AbstractToolOperation<JLink, JLinkArguments> {
-    public JLink(ToolProvider toolProvider, JLinkArguments options) {
-        super(Tool.ofToolProvider(toolProvider), options);
+    public JLink(ToolProvider toolProvider, JLinkArguments arguments) {
+        super(Tool.ofToolProvider(toolProvider),  arguments);
     }
 
-    public JLink(JLinkArguments options) {
+    public JLink(JLinkArguments arguments) {
         super(
                 Tool.ofToolProvider(
                         ToolProvider.findFirst("jlink").orElseThrow()
                 ),
-                options
+                 arguments
         );
     }
 

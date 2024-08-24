@@ -241,16 +241,16 @@ public final class JPackageArguments extends ToolArguments {
     //          If not specified, defaults to "--strip-native-commands
     //          --strip-debug --no-man-pages --no-header-files".
     //          This option can be used multiple times.
-    public JPackageArguments __jlink_options(JLinkArguments options) {
+    public JPackageArguments __jlink_options(JLinkArguments arguments) {
         add("--jlink-options");
-        add(String.join(" ", options));
+        add(String.join(" ", arguments));
         return this;
     }
 
     public JPackageArguments __jlink_options(Consumer<JLinkArguments> consumer) {
-        var options = new JLinkArguments();
-        consumer.accept(options);
-        return __jlink_options(options);
+        var  arguments = new JLinkArguments();
+        consumer.accept( arguments);
+        return __jlink_options( arguments);
     }
 
     //  --runtime-image <directory path>

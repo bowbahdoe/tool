@@ -8,14 +8,14 @@ import java.util.spi.ToolProvider;
 
 public final class JPackage
         extends AbstractToolOperation<JPackage, JPackageArguments> {
-    public JPackage(ToolProvider toolProvider, JPackageArguments options) {
-        super(Tool.ofToolProvider(toolProvider), options);
+    public JPackage(ToolProvider toolProvider, JPackageArguments arguments) {
+        super(Tool.ofToolProvider(toolProvider),  arguments);
     }
 
-    public JPackage(JPackageArguments options) {
+    public JPackage(JPackageArguments arguments) {
         super(
                 Tool.ofToolProvider(ToolProvider.findFirst("jpackage").orElseThrow()),
-                options
+                 arguments
         );
     }
 
@@ -24,12 +24,12 @@ public final class JPackage
         consumer.accept(this.arguments);
     }
 
-    public static void execute(ToolProvider toolProvider, JPackageArguments options) throws Exception {
-        new JPackage(toolProvider, options).execute();
+    public static void execute(ToolProvider toolProvider, JPackageArguments arguments) throws Exception {
+        new JPackage(toolProvider,  arguments).execute();
     }
 
-    public static void execute(JPackageArguments options) throws Exception {
-        new JPackage(options).execute();
+    public static void execute(JPackageArguments arguments) throws Exception {
+        new JPackage( arguments).execute();
     }
 
     public static void execute(Consumer<? super JPackageArguments> consumer) throws Exception {
