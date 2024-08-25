@@ -2,6 +2,7 @@ package dev.mccue.tools.jlink;
 
 import dev.mccue.tools.ToolArguments;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -154,7 +155,7 @@ public final class JLinkArguments extends ToolArguments {
 
     public JLinkArguments __module_path(List<?> modules) {
         add("--module-path");
-        add(modules.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(",")));
+        add(modules.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
@@ -164,7 +165,7 @@ public final class JLinkArguments extends ToolArguments {
 
     public JLinkArguments _p(List<?> modules) {
         add("-p");
-        add(modules.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(",")));
+        add(modules.stream().map(JLinkArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 //      --no-header-files                 Exclude include header files

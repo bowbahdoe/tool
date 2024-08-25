@@ -2,7 +2,9 @@ package dev.mccue.tools.java;
 
 import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.ToolArguments;
+import dev.mccue.tools.jlink.JLinkArguments;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -38,20 +40,76 @@ public final class JavaArguments extends ToolArguments {
     // where options include:
     //
     //    -cp <class search path of directories and zip/jar files>
+    public JavaArguments _cp(Object... paths) {
+        return _cp(Arrays.asList(paths));
+    }
+
+    public JavaArguments _cp(List<?> paths) {
+        add("-cp");
+        add(paths.stream().map(JavaArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        return this;
+    }
     //    -classpath <class search path of directories and zip/jar files>
+    public JavaArguments _classpath(Object... paths) {
+        return _classpath(Arrays.asList(paths));
+    }
+
+    public JavaArguments _classpath(List<?> paths) {
+        add("-classpath");
+        add(paths.stream().map(JavaArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        return this;
+    }
     //    --class-path <class search path of directories and zip/jar files>
     //                  A : separated list of directories, JAR archives,
     //                  and ZIP archives to search for class files.
+    public JavaArguments __class_path(Object... paths) {
+        return __class_path(Arrays.asList(paths));
+    }
+
+    public JavaArguments __class_path(List<?> paths) {
+        add("--class-path");
+        add(paths.stream().map(JavaArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        return this;
+    }
     //    -p <module path>
+    public JavaArguments _p(Object... modules) {
+        return _p(Arrays.asList(modules));
+    }
+
+    public JavaArguments _p(List<?> modules) {
+        add("-p");
+        add(modules.stream().map(JavaArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        return this;
+    }
+
     //    --module-path <module path>...
     //                  A : separated list of elements, each element is a file path
     //                  to a module or a directory containing modules. Each module is either
     //                  a modular JAR or an exploded-module directory.
+    public JavaArguments __module_path(Object... modules) {
+        return __module_path(Arrays.asList(modules));
+    }
+
+    public JavaArguments __module_path(List<?> modules) {
+        add("--module-path");
+        add(modules.stream().map(JavaArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        return this;
+    }
     //    --upgrade-module-path <module path>...
     //                  A : separated list of elements, each element is a file path
     //                  to a module or a directory containing modules to replace
     //                  upgradeable modules in the runtime image. Each module is either
     //                  a modular JAR or an exploded-module directory.
+    public JavaArguments __upgrade_module_path(Object... modules) {
+        return __upgrade_module_path(Arrays.asList(modules));
+    }
+
+    public JavaArguments __upgrade_module_path(List<?> modules) {
+        add("--upgrade-module-path");
+        add(modules.stream().map(JavaArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        return this;
+    }
+
     //    --add-modules <module name>[,<module name>...]
     //                  root modules to resolve in addition to the initial module.
     //                  <module name> can also be ALL-DEFAULT, ALL-SYSTEM,
