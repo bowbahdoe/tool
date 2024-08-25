@@ -15,7 +15,7 @@ public final class JMod
     public JMod(JModArguments arguments) {
         super(
                 Tool.ofToolProvider(
-                        ToolProvider.findFirst("jlink").orElseThrow()
+                        ToolProvider.findFirst("jmod").orElseThrow()
                 ),
                 arguments
         );
