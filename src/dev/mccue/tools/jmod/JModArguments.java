@@ -25,6 +25,10 @@ public final class JModArguments extends ToolArguments {
         super(c);
     }
 
+    public JModArguments jmodFile(Object file) {
+        add(toArgumentString(file));
+        return this;
+    }
 
     // Usage: jmod (create|extract|list|describe|hash) <OPTIONS> <jmod-file>
     //

@@ -6,4 +6,5 @@ module dev.mccue.tool {
     exports dev.mccue.tools.javadoc;
     exports dev.mccue.tools.jlink;
     exports dev.mccue.tools.jpackage;
+    exports dev.mccue.tools.jmod;
 }
