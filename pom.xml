@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools</artifactId>
-    <version>2024.08.24</version>
+    <version>2024.08.24.1</version>
     <packaging>jar</packaging>
     <name>tools</name>
     <description>API for working directly with CLI tools.</description>
