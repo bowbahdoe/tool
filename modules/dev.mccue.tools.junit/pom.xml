@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
-    <artifactId>tools-jpackage</artifactId>
+    <artifactId>tools-junit</artifactId>
     <version>2024.08.25.5</version>
     <packaging>jar</packaging>
-    <name>tools-jpackage</name>
-    <description>API for working directly with the jlink tool.</description>
+    <name>tools-junit</name>
+    <description>API for working directly with the junit tool.</description>
     <url>https://github.com/bowbahdoe/tools</url>
     <developers>
         <developer>
@@ -34,9 +34,9 @@
             <version>2024.08.25.5</version>
         </dependency>
         <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>tools-jlink</artifactId>
-            <version>2024.08.25.5</version>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-console</artifactId>
+            <version>1.11.0</version>
         </dependency>
     </dependencies>
 </project>
