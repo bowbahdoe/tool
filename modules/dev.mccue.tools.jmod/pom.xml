@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools-jmod</artifactId>
-    <version>2024.08.25.1</version>
+    <version>2024.08.25.2</version>
     <packaging>jar</packaging>
     <name>tools-jmod</name>
     <description>API for working directly with the jlink tool.</description>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools</artifactId>
-            <version>2024.08.25.1</version>
+            <version>2024.08.25.2</version>
         </dependency>
     </dependencies>
 </project>

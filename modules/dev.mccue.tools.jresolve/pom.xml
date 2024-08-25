@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
-    <artifactId>tools-java</artifactId>
+    <artifactId>tools-jresolve</artifactId>
     <version>2024.08.25.2</version>
     <packaging>jar</packaging>
-    <name>tools-java</name>
-    <description>API for working directly with the java launcher.</description>
+    <name>tools-jresolve</name>
+    <description>API for working directly with the jresolve tool.</description>
     <url>https://github.com/bowbahdoe/tools</url>
     <developers>
         <developer>
@@ -26,12 +26,16 @@
         <developerConnection>scm:git:ssh://github.com:bowbahdoe/tools.git</developerConnection>
         <url>http://github.com/bowbahdoe/tools/tree/main</url>
     </scm>
-
     <dependencies>
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools</artifactId>
             <version>2024.08.25.2</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>jresolve-cli</artifactId>
+            <version>2024.08.23</version>
         </dependency>
     </dependencies>
 </project>

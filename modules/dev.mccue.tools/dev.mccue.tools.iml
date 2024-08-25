@@ -7,5 +7,14 @@
     </content>
     <orderEntry type="jdk" jdkName="22" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="dev.mccue.tools.jar" />
+    <orderEntry type="module" module-name="dev.mccue.tools.java" />
+    <orderEntry type="module" module-name="dev.mccue.tools.javac" />
+    <orderEntry type="module" module-name="dev.mccue.tools.javadoc" />
+    <orderEntry type="module" module-name="dev.mccue.tools.javap" />
+    <orderEntry type="module" module-name="dev.mccue.tools.jdk" />
+    <orderEntry type="module" module-name="dev.mccue.tools.jlink" />
+    <orderEntry type="module" module-name="dev.mccue.tools.jmod" />
+    <orderEntry type="module" module-name="dev.mccue.tools.jpackage" />
   </component>
 </module>

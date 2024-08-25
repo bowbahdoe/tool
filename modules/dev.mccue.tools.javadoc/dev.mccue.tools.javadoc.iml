@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="jdk" jdkName="22" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="dev.mccue.tools" />
+    <orderEntry type="module" module-name="dev.mccue.tools.java" />
   </component>
 </module>
