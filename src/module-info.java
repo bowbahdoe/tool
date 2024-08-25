@@ -1,4 +1,4 @@
-module dev.mccue.tool {
+module dev.mccue.tools {
     exports dev.mccue.tools;
     exports dev.mccue.tools.jar;
     exports dev.mccue.tools.java;

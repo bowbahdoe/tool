@@ -14,7 +14,7 @@ public final class Javadoc
 
     public Javadoc(JavadocArguments arguments) {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
+                Tool.ofToolProvider(ToolProvider.findFirst("javadoc").orElseThrow()),
                 arguments
         );
     }

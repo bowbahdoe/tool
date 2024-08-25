@@ -231,6 +231,7 @@ public final class JavadocArguments extends ToolArguments {
     }
 
     public JavadocArguments __limit_modules(List<?> dirlist) {
+        add("--limit-modules");
         add(dirlist.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
@@ -238,6 +239,7 @@ public final class JavadocArguments extends ToolArguments {
     //    -locale <name>
     //                  Locale to be used, e.g. en_US or en_US_WIN
     public JavadocArguments _locale(Object name) {
+        add("-locale");
         add(toArgumentString(name));
         return this;
     }
@@ -249,6 +251,7 @@ public final class JavadocArguments extends ToolArguments {
     }
 
     public JavadocArguments __module(List<?> modules) {
+        add("--module");
         add(modules.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(",")));
         return this;
     }
@@ -260,6 +263,7 @@ public final class JavadocArguments extends ToolArguments {
     }
 
     public JavadocArguments __module_path(List<?> paths) {
+        add("--module-path");
         add(paths.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
@@ -271,6 +275,7 @@ public final class JavadocArguments extends ToolArguments {
     }
 
     public JavadocArguments __module_source_path(List<?> paths) {
+        add("--module-source-path");
         add(paths.stream().map(JavadocArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
