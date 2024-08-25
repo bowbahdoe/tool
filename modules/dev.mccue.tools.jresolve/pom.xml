@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools-jresolve</artifactId>
-    <version>2024.08.25.2</version>
+    <version>2024.08.25.3</version>
     <packaging>jar</packaging>
     <name>tools-jresolve</name>
     <description>API for working directly with the jresolve tool.</description>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools</artifactId>
-            <version>2024.08.25.2</version>
+            <version>2024.08.25.3</version>
         </dependency>
         <dependency>
             <groupId>dev.mccue</groupId>

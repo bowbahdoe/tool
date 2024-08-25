@@ -17,7 +17,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.25.2 \
+      --module-version 2024.08.25.3 \
       -d build/javac \
       --module dev.mccue.tools,dev.mccue.tools.jar,dev.mccue.tools.java,dev.mccue.tools.javac,dev.mccue.tools.javadoc,dev.mccue.tools.javap,dev.mccue.tools.jdk,dev.mccue.tools.jlink,dev.mccue.tools.jmod,dev.mccue.tools.jpackage,dev.mccue.tools.jresolve,dev.mccue.tools.jstage
 
@@ -60,7 +60,7 @@ stage: package document
 
     jstage --output build/jstage --pom modules/dev.mccue.tools.java/pom.xml --artifact modules/dev.mccue.tools.java/src   --classifier sources
     jstage --output build/jstage --pom modules/dev.mccue.tools.java/pom.xml --artifact build/javadoc/dev.mccue.tools.java --classifier javadoc
-    jstage --output build/jstage --pom modules/dev.mccue.tools.java/pom.xml --artifact build/jar/dev.mccue.tools.jar
+    jstage --output build/jstage --pom modules/dev.mccue.tools.java/pom.xml --artifact build/jar/dev.mccue.tools.java.jar
 
     jstage --output build/jstage --pom modules/dev.mccue.tools.javac/pom.xml --artifact modules/dev.mccue.tools.javac/src   --classifier sources
     jstage --output build/jstage --pom modules/dev.mccue.tools.javac/pom.xml --artifact build/javadoc/dev.mccue.tools.javac --classifier javadoc
@@ -97,8 +97,6 @@ stage: package document
     jstage --output build/jstage --pom modules/dev.mccue.tools.jstage/pom.xml --artifact modules/dev.mccue.tools.jstage/src   --classifier sources
     jstage --output build/jstage --pom modules/dev.mccue.tools.jstage/pom.xml --artifact build/javadoc/dev.mccue.tools.jstage --classifier javadoc
     jstage --output build/jstage --pom modules/dev.mccue.tools.jstage/pom.xml --artifact build/jar/dev.mccue.tools.jstage.jar
-
-
 
 deploy: stage
     jreleaser deploy --output-directory build
