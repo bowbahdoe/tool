@@ -1,37 +1,70 @@
 package dev.mccue.tools.javap;
 
-import dev.mccue.tools.AbstractToolOperation;
+import dev.mccue.tools.AbstractToolRunner;
+import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.Tool;
+import dev.mccue.tools.javadoc.JavadocArguments;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
-public final class Javap extends AbstractToolOperation<Javap, JavapArguments> {
-    public Javap(ToolProvider toolProvider, JavapArguments arguments) {
-        super(Tool.ofToolProvider(toolProvider),  arguments);
+public final class Javap extends AbstractToolRunner<Javap, JavapArguments> {
+    private Javap(Tool tool, JavapArguments arguments) {
+        super(tool, arguments);
     }
 
-    public Javap(JavapArguments arguments) {
+    private Javap() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
+                Tool.ofToolProvider(ToolProvider.findFirst("javap").orElseThrow()),
+                new JavapArguments()
+        );
+    }
+
+    public static Javap runner() {
+        return new Javap();
+    }
+
+    public static Javap runner(Tool tool) {
+        return new Javap(tool, new JavapArguments());
+    }
+
+    public static Javap runner(Tool tool, JavapArguments arguments) {
+        return new Javap(tool, arguments);
+    }
+
+    public static Javap runner(JavapArguments arguments) {
+        return new Javap(
+                Tool.ofToolProvider(ToolProvider.findFirst("javap").orElseThrow()),
                 arguments
         );
     }
 
-    public Javap(Consumer<? super JavapArguments> consumer) {
-        this(new JavapArguments());
-        consumer.accept(this.arguments);
+    public static Javap runner(Consumer<? super JavapArguments> consumer) {
+        var javap = runner();
+        consumer.accept(javap.arguments);
+        return javap;
     }
 
-    public static void execute(ToolProvider toolProvider, JavapArguments arguments) throws Exception {
-        new Javap(toolProvider, arguments).execute();
+    public static Javap runner(Tool tool, Consumer<? super JavapArguments> consumer) {
+        var javap = runner(tool);
+        consumer.accept(javap.arguments);
+        return javap;
     }
 
-    public static void execute(JavapArguments arguments) throws Exception {
-        new Javap(arguments).execute();
+    public static void run(Tool tool, JavapArguments arguments) throws ExitStatusException {
+        runner(tool, arguments).run();
     }
 
-    public static void execute(Consumer<? super JavapArguments> consumer) throws Exception {
-        new Javap(consumer).execute();
+    public static void run(JavapArguments arguments) throws ExitStatusException {
+        runner(arguments).run();
+    }
+
+    public static void run(Tool tool, Consumer<? super JavapArguments> consumer) throws ExitStatusException {
+        runner(tool, consumer).run();
+    }
+
+
+    public static void run(Consumer<? super JavapArguments> consumer) throws ExitStatusException {
+        runner(consumer).run();
     }
 }

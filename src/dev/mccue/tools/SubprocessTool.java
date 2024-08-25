@@ -12,15 +12,27 @@ final class SubprocessTool implements Tool {
     private final List<String> commandPrefix;
     private OutputStream redirectOutput;
     private OutputStream redirectError;
+    private Consumer<? super String> echoCommand;
 
     SubprocessTool(List<String> commandPrefix) {
         this.commandPrefix = commandPrefix;
         this.redirectOutput = null;
         this.redirectError = null;
+        this.echoCommand = System.err::println;
     }
 
     @Override
     public void run(String[] args) throws ExitStatusException {
+        if (echoCommand != null) {
+            var sb = new StringBuilder();
+            sb.append(String.join(" ", commandPrefix));
+            if (!(args.length == 0)) {
+                sb.append(" ");
+                sb.append(String.join(" ", args));
+            }
+            echoCommand.accept(sb.toString());
+        }
+
         var allArgs = new ArrayList<>(commandPrefix);
         allArgs.addAll(Arrays.asList(args));
         try {
@@ -57,14 +69,8 @@ final class SubprocessTool implements Tool {
     }
 
     @Override
-    public void log(Consumer<? super String> logger, String[] args) {
-        var sb = new StringBuilder();
-        sb.append(String.join(" ", commandPrefix));
-        if (!(args.length == 0)) {
-            sb.append(" ");
-            sb.append(String.join(" ", args));
-        }
-        logger.accept(sb.toString());
+    public void run(List<String> args) throws ExitStatusException {
+        run(args.toArray(String[]::new));
     }
 
     @Override
@@ -76,6 +82,27 @@ final class SubprocessTool implements Tool {
     @Override
     public Tool redirectError(OutputStream outputStream) {
         this.redirectError = outputStream;
+        return this;
+    }
+
+
+    @Override
+    public Tool echoCommand(boolean echoCommand) {
+        if (echoCommand) {
+            if (this.echoCommand == null) {
+                this.echoCommand = System.err::println;
+            }
+        }
+        else {
+            this.echoCommand = null;
+        }
+
+        return this;
+    }
+
+    @Override
+    public Tool echoCommand(Consumer<? super String> consumer) {
+        this.echoCommand = consumer;
         return this;
     }
 }

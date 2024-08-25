@@ -1,40 +1,73 @@
 package dev.mccue.tools.jlink;
 
-import dev.mccue.tools.AbstractToolOperation;
+import dev.mccue.tools.AbstractToolRunner;
+import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.Tool;
+import dev.mccue.tools.javadoc.JavadocArguments;
+import dev.mccue.tools.jmod.JMod;
+import dev.mccue.tools.jmod.JModArguments;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 public final class JLink
-        extends AbstractToolOperation<JLink, JLinkArguments> {
-    public JLink(ToolProvider toolProvider, JLinkArguments arguments) {
-        super(Tool.ofToolProvider(toolProvider),  arguments);
+        extends AbstractToolRunner<JLink, JLinkArguments> {
+    private JLink(Tool tool, JLinkArguments arguments) {
+        super(tool, arguments);
     }
 
-    public JLink(JLinkArguments arguments) {
+    private JLink() {
         super(
-                Tool.ofToolProvider(
-                        ToolProvider.findFirst("jlink").orElseThrow()
-                ),
-                 arguments
+                Tool.ofToolProvider(ToolProvider.findFirst("jlink").orElseThrow()),
+                new JLinkArguments()
         );
     }
 
-    public JLink(Consumer<? super JLinkArguments> consumer) {
-        this(new JLinkArguments());
-        consumer.accept(this.arguments);
+    public static JLink runner() {
+        return new JLink();
     }
 
-    public static void execute(ToolProvider toolProvider, JLinkArguments arguments) throws Exception {
-        new JLink(toolProvider, arguments).execute();
+    public static JLink runner(Tool tool) {
+        return new JLink(tool, new JLinkArguments());
     }
 
-    public static void execute(JLinkArguments arguments) throws Exception {
-        new JLink(arguments).execute();
+    public static JLink runner(Tool tool, JLinkArguments arguments) {
+        return new JLink(tool, arguments);
     }
 
-    public static void execute(Consumer<? super JLinkArguments> consumer) throws Exception {
-        new JLink(consumer).execute();
+    public static JLink runner(JLinkArguments arguments) {
+        return new JLink(
+                Tool.ofToolProvider(ToolProvider.findFirst("jlink").orElseThrow()),
+                arguments
+        );
+    }
+
+    public static JLink runner(Consumer<? super JLinkArguments> consumer) {
+        var jlink = runner();
+        consumer.accept(jlink.arguments);
+        return jlink;
+    }
+
+    public static JLink runner(Tool tool, Consumer<? super JLinkArguments> consumer) {
+        var jlink = runner(tool);
+        consumer.accept(jlink.arguments);
+        return jlink;
+    }
+
+    public static void run(Tool tool, JLinkArguments arguments) throws ExitStatusException {
+        new JLink(tool, arguments).run();
+    }
+
+    public static void run(JLinkArguments arguments) throws ExitStatusException {
+        runner(arguments).run();
+    }
+
+    public static void run(Tool tool, Consumer<? super JLinkArguments> consumer) throws ExitStatusException {
+        runner(tool, consumer).run();
+    }
+
+
+    public static void run(Consumer<? super JLinkArguments> consumer) throws ExitStatusException {
+        runner(consumer).run();
     }
 }

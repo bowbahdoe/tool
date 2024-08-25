@@ -1,41 +1,17 @@
 package dev.mccue.tools;
 
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 public sealed interface Tool
     permits SubprocessTool, ToolProviderTool {
-    void run(String... args) throws ExitStatusException;
+    void run(List<String> args) throws ExitStatusException;
 
-    void log(Consumer<? super String> out, String... args);
-
-    default void logAndRun(Consumer<? super String> out, String... args) {
-        log(out, args);
-    }
-
-    default void logAndRun(String... args) throws ExitStatusException {
-        log(System.err::println, args);
-        run(args);
-    }
-
-    default void run(List<String> args) throws ExitStatusException {
-        run(args.toArray(String[]::new));
-    }
-
-    default void log(Consumer<? super String> out, List<String> args) {
-        log(out, args.toArray(String[]::new));
-    }
-
-    default void logAndRun(Consumer<? super String> out, List<String> args) throws ExitStatusException {
-        log(out, args);
-        run(args);
-    }
-
-    default void logAndRun(List<String> args) throws ExitStatusException {
-        log(System.err::println, args);
-        run(args);
+    default void run(String... args) throws ExitStatusException {
+        run(Arrays.asList(args));
     }
 
     static Tool ofToolProvider(ToolProvider toolProvider) {
@@ -53,4 +29,8 @@ public sealed interface Tool
     Tool redirectOutput(OutputStream outputStream);
 
     Tool redirectError(OutputStream outputStream);
+
+    Tool echoCommand(boolean echoCommand);
+
+    Tool echoCommand(Consumer<? super String> consumer);
 }

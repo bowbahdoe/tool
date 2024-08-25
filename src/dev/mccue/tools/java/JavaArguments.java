@@ -36,7 +36,47 @@ public final class JavaArguments extends ToolArguments {
     // Arguments following the main class, source file, -jar <jarfile>,
     // -m or --module <module>/<mainclass> are passed as the arguments to
     // main class.
-    //
+    public JavaArguments mainClass(Object mainClass) {
+        add(toArgumentString(mainClass));
+        return this;
+    }
+
+    public JavaArguments sourceFile(Object sourceFile) {
+        add(toArgumentString(sourceFile));
+        return this;
+    }
+
+    public JavaArguments _jar(Object jar) {
+        add("-jar");
+        add(toArgumentString(jar));
+        return this;
+    }
+
+    public JavaArguments _m(Object module) {
+        add("-m");
+        add(toArgumentString(module));
+        return this;
+    }
+
+    public JavaArguments _m(Object module, Object mainClass) {
+        add("-m");
+        add(toArgumentString(module) + "/" + toArgumentString(mainClass));
+        return this;
+    }
+
+
+    public JavaArguments __module(Object module) {
+        add("--module");
+        add(toArgumentString(module));
+        return this;
+    }
+
+    public JavaArguments __module(Object module, Object mainClass) {
+        add("--module");
+        add(toArgumentString(module) + "/" + toArgumentString(mainClass));
+        return this;
+    }
+
     // where options include:
     //
     //    -cp <class search path of directories and zip/jar files>

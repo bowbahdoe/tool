@@ -1,40 +1,71 @@
 package dev.mccue.tools.jmod;
 
-import dev.mccue.tools.AbstractToolOperation;
+import dev.mccue.tools.AbstractToolRunner;
+import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.Tool;
+import dev.mccue.tools.javadoc.JavadocArguments;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 public final class JMod
-        extends AbstractToolOperation<JMod, JModArguments> {
-    public JMod(ToolProvider toolProvider, JModArguments arguments) {
-        super(Tool.ofToolProvider(toolProvider),  arguments);
+        extends AbstractToolRunner<JMod, JModArguments> {
+    private JMod(Tool tool, JModArguments arguments) {
+        super(tool, arguments);
     }
 
-    public JMod(JModArguments arguments) {
+    private JMod() {
         super(
-                Tool.ofToolProvider(
-                        ToolProvider.findFirst("jmod").orElseThrow()
-                ),
+                Tool.ofToolProvider(ToolProvider.findFirst("jmod").orElseThrow()),
+                new JModArguments()
+        );
+    }
+
+    public static JMod runner() {
+        return new JMod();
+    }
+
+    public static JMod runner(Tool tool) {
+        return new JMod(tool, new JModArguments());
+    }
+
+    public static JMod runner(Tool tool, JModArguments arguments) {
+        return new JMod(tool, arguments);
+    }
+
+    public static JMod runner(JModArguments arguments) {
+        return new JMod(
+                Tool.ofToolProvider(ToolProvider.findFirst("jmod").orElseThrow()),
                 arguments
         );
     }
 
-    public JMod(Consumer<? super JModArguments> consumer) {
-        this(new JModArguments());
-        consumer.accept(this.arguments);
+    public static JMod runner(Consumer<? super JModArguments> consumer) {
+        var jmod = runner();
+        consumer.accept(jmod.arguments);
+        return jmod;
     }
 
-    public static void execute(ToolProvider toolProvider, JModArguments arguments) throws Exception {
-        new JMod(toolProvider, arguments).execute();
+    public static JMod runner(Tool tool, Consumer<? super JModArguments> consumer) {
+        var jmod = runner(tool);
+        consumer.accept(jmod.arguments);
+        return jmod;
     }
 
-    public static void execute(JModArguments arguments) throws Exception {
-        new JMod(arguments).execute();
+    public static void run(Tool tool, JModArguments arguments) throws ExitStatusException {
+        new JMod(tool, arguments).run();
     }
 
-    public static void execute(Consumer<? super JModArguments> consumer) throws Exception {
-        new JMod(consumer).execute();
+    public static void run(JModArguments arguments) throws ExitStatusException {
+        runner(arguments).run();
+    }
+
+    public static void run(Tool tool, Consumer<? super JModArguments> consumer) throws ExitStatusException {
+        runner(tool, consumer).run();
+    }
+
+
+    public static void run(Consumer<? super JModArguments> consumer) throws ExitStatusException {
+        runner(consumer).run();
     }
 }

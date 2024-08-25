@@ -1,38 +1,71 @@
 package dev.mccue.tools.javadoc;
 
-import dev.mccue.tools.AbstractToolOperation;
+import dev.mccue.tools.AbstractToolRunner;
+import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.Tool;
+import dev.mccue.tools.jmod.JMod;
+import dev.mccue.tools.jmod.JModArguments;
 
 import java.util.function.Consumer;
 import java.util.spi.ToolProvider;
 
 public final class Javadoc
-        extends AbstractToolOperation<Javadoc, JavadocArguments> {
-    public Javadoc(ToolProvider toolProvider, JavadocArguments arguments) {
-        super(Tool.ofToolProvider(toolProvider), arguments);
+        extends AbstractToolRunner<Javadoc, JavadocArguments> {
+    private Javadoc(Tool tool, JavadocArguments arguments) {
+        super(tool, arguments);
     }
 
-    public Javadoc(JavadocArguments arguments) {
+    private Javadoc() {
         super(
+                Tool.ofToolProvider(ToolProvider.findFirst("javadoc").orElseThrow()),
+                new JavadocArguments()
+        );
+    }
+
+    public static Javadoc runner() {
+        return new Javadoc();
+    }
+
+    public static Javadoc runner(Tool tool) {
+        return new Javadoc(tool, new JavadocArguments());
+    }
+
+    public static Javadoc runner(Tool tool, JavadocArguments arguments) {
+        return new Javadoc(tool, arguments);
+    }
+
+    public static Javadoc runner(JavadocArguments arguments) {
+        return new Javadoc(
                 Tool.ofToolProvider(ToolProvider.findFirst("javadoc").orElseThrow()),
                 arguments
         );
     }
 
-    public Javadoc(Consumer<? super JavadocArguments> consumer) {
-        this(new JavadocArguments());
-        consumer.accept(this.arguments);
+    public static Javadoc runner(Consumer<? super JavadocArguments> consumer) {
+        var javadoc = runner();
+        consumer.accept(javadoc.arguments);
+        return javadoc;
     }
 
-    public static void execute(ToolProvider toolProvider, JavadocArguments arguments) throws Exception {
-        new Javadoc(toolProvider, arguments).execute();
+    public static Javadoc runner(Tool tool, Consumer<? super JavadocArguments> consumer) {
+        var javadoc = runner(tool);
+        consumer.accept(javadoc.arguments);
+        return javadoc;
     }
 
-    public static void execute(JavadocArguments arguments) throws Exception {
-        new Javadoc(arguments).execute();
+    public static void run(Tool tool, JavadocArguments arguments) throws ExitStatusException {
+        new Javadoc(tool, arguments).run();
     }
 
-    public static void execute(Consumer<? super JavadocArguments> consumer) throws Exception {
-        new Javadoc(consumer).execute();
+    public static void run(JavadocArguments arguments) throws ExitStatusException {
+        runner(arguments).run();
+    }
+
+    public static void run(Tool tool, Consumer<? super JavadocArguments> consumer) throws ExitStatusException {
+        runner(tool, consumer).run();
+    }
+
+    public static void run(Consumer<? super JavadocArguments> consumer) throws ExitStatusException {
+        runner(consumer).run();
     }
 }

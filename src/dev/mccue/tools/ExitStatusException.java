@@ -9,7 +9,7 @@ import java.io.Serial;
  * @author Geert Bevin (gbevin[remove] at uwyn dot com)
  * @since 1.5
  */
-public class ExitStatusException extends Exception {
+public final class ExitStatusException extends Exception {
     public static final int EXIT_SUCCESS = 0;
     public static final int EXIT_FAILURE = 1;
 
