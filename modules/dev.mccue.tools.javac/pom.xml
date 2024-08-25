@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
-    <artifactId>tools</artifactId>
+    <artifactId>tools-javac</artifactId>
     <version>2024.08.25.1</version>
     <packaging>jar</packaging>
-    <name>tools</name>
-    <description>API for working directly with CLI tools.</description>
-    <url>https://github.com/bowbahdoe/bldtools</url>
+    <name>tools-javac</name>
+    <description>API for working directly with the javac tool.</description>
+    <url>https://github.com/bowbahdoe/tools</url>
     <developers>
         <developer>
             <name>Ethan McCue</name>
@@ -22,8 +22,22 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/bowbahdoe/bldtools.git</connection>
-        <developerConnection>scm:git:ssh://github.com:bowbahdoe/bldtools.git</developerConnection>
-        <url>http://github.com/bowbahdoe/bldtools/tree/main</url>
+        <connection>scm:git:git://github.com/bowbahdoe/tools.git</connection>
+        <developerConnection>scm:git:ssh://github.com:bowbahdoe/tools.git</developerConnection>
+        <url>http://github.com/bowbahdoe/tools/tree/main</url>
     </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-java</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+    </dependencies>
 </project>

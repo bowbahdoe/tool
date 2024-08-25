@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <name>tools</name>
     <description>API for working directly with CLI tools.</description>
-    <url>https://github.com/bowbahdoe/bldtools</url>
+    <url>https://github.com/bowbahdoe/tools</url>
     <developers>
         <developer>
             <name>Ethan McCue</name>
@@ -22,8 +22,8 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/bowbahdoe/bldtools.git</connection>
-        <developerConnection>scm:git:ssh://github.com:bowbahdoe/bldtools.git</developerConnection>
-        <url>http://github.com/bowbahdoe/bldtools/tree/main</url>
+        <connection>scm:git:git://github.com/bowbahdoe/tools.git</connection>
+        <developerConnection>scm:git:ssh://github.com:bowbahdoe/tools.git</developerConnection>
+        <url>http://github.com/bowbahdoe/tools/tree/main</url>
     </scm>
 </project>

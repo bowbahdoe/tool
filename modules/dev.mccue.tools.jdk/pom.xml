@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>dev.mccue</groupId>
+    <artifactId>tools-jdk</artifactId>
+    <version>2024.08.25.1</version>
+    <packaging>jar</packaging>
+    <name>tools-jdk</name>
+    <description>API for working directly with the tools that come with a JDK.</description>
+    <url>https://github.com/bowbahdoe/tools</url>
+    <developers>
+        <developer>
+            <name>Ethan McCue</name>
+            <email>ethan@mccue.dev</email>
+            <organization>McCue Software Solutions</organization>
+            <organizationUrl>https://www.mccue.dev</organizationUrl>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git://github.com/bowbahdoe/tools.git</connection>
+        <developerConnection>scm:git:ssh://github.com:bowbahdoe/tools.git</developerConnection>
+        <url>http://github.com/bowbahdoe/tools/tree/main</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-jar</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-java</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-javac</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-javadoc</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-javap</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-jlink</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-jmod</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools-jpackage</artifactId>
+            <version>2024.08.25.1</version>
+        </dependency>
+    </dependencies>
+</project>
