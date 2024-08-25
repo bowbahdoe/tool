@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools-jstage</artifactId>
-    <version>2024.08.25.3</version>
+    <version>2024.08.25.4</version>
     <packaging>jar</packaging>
     <name>tools-jstage</name>
     <description>API for working directly with the jstage tool.</description>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools</artifactId>
-            <version>2024.08.25.3</version>
+            <version>2024.08.25.4</version>
         </dependency>
         <dependency>
             <groupId>dev.mccue</groupId>

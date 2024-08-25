@@ -82,4 +82,9 @@ public final class JResolveArguments extends ToolArguments {
         add("--help");
         return this;
     }
+
+    public JResolveArguments argumentFile(Object filename) {
+        add("@" + toArgumentString(filename));
+        return this;
+    }
 }

@@ -51,4 +51,9 @@ public final class JStageArguments extends ToolArguments {
         add("--help");
         return this;
     }
+
+    public JStageArguments argumentFile(Object filename) {
+        add("@" + toArgumentString(filename));
+        return this;
+    }
 }

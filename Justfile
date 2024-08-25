@@ -17,7 +17,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.25.3 \
+      --module-version 2024.08.25.4 \
       -d build/javac \
       --module dev.mccue.tools,dev.mccue.tools.jar,dev.mccue.tools.java,dev.mccue.tools.javac,dev.mccue.tools.javadoc,dev.mccue.tools.javap,dev.mccue.tools.jdk,dev.mccue.tools.jlink,dev.mccue.tools.jmod,dev.mccue.tools.jpackage,dev.mccue.tools.jresolve,dev.mccue.tools.jstage
 
