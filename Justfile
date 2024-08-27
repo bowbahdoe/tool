@@ -9,29 +9,19 @@ install:
       --purge-output-directory \
       --use-module-names \
       --output-directory modules/dev.mccue.tools.jresolve/libs \
-      --enrich-pom modules/dev.mccue.tools.jresolve/pom.xml \
       @modules/dev.mccue.tools.jresolve/libs.txt
 
     jresolve \
       --purge-output-directory \
       --use-module-names \
       --output-directory modules/dev.mccue.tools.jstage/libs \
-      --enrich-pom modules/dev.mccue.tools.jstage/pom.xml \
       @modules/dev.mccue.tools.jstage/libs.txt
 
     jresolve \
       --purge-output-directory \
       --use-module-names \
       --output-directory modules/dev.mccue.tools.junit/libs \
-      --enrich-pom modules/dev.mccue.tools.junit/pom.xml \
       @modules/dev.mccue.tools.junit/libs.txt
-
-    jresolve \
-      --purge-output-directory \
-      --use-module-names \
-      --output-directory modules/dev.mccue.tools.pomchecker/libs \
-      --enrich-pom modules/dev.mccue.tools.pomchecker/pom.xml \
-      @modules/dev.mccue.tools.pomchecker/libs.txt
 
 compile: clean
     javac \

@@ -26,40 +26,16 @@
         <developerConnection>scm:git:ssh://github.com:bowbahdoe/tools.git</developerConnection>
         <url>http://github.com/bowbahdoe/tools/tree/main</url>
     </scm>
+
     <dependencies>
+        <dependency>
+            <groupId>dev.mccue</groupId>
+            <artifactId>tools</artifactId>
+            <version>2024.08.27</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-console</artifactId>
-            <version>1.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-reporting</artifactId>
-            <version>1.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apiguardian</groupId>
-            <artifactId>apiguardian-api</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <version>1.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-engine</artifactId>
-            <version>1.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opentest4j</groupId>
-            <artifactId>opentest4j</artifactId>
-            <version>1.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-commons</artifactId>
             <version>1.11.0</version>
         </dependency>
     </dependencies>

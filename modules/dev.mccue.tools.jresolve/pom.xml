@@ -29,28 +29,13 @@
     <dependencies>
         <dependency>
             <groupId>dev.mccue</groupId>
+            <artifactId>tools</artifactId>
+            <version>2024.08.27</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.mccue</groupId>
             <artifactId>jresolve-cli</artifactId>
             <version>2024.08.23</version>
-        </dependency>
-        <dependency>
-            <groupId>info.picocli</groupId>
-            <artifactId>picocli</artifactId>
-            <version>4.7.5</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>resolve</artifactId>
-            <version>2024.05.26</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>json</artifactId>
-            <version>2023.12.23</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>purl</artifactId>
-            <version>2023.11.07</version>
         </dependency>
     </dependencies>
 </project>
