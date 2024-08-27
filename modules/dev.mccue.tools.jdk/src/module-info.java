@@ -7,4 +7,6 @@ module dev.mccue.tools.jdk {
     requires transitive dev.mccue.tools.jlink;
     requires transitive dev.mccue.tools.jmod;
     requires transitive dev.mccue.tools.jpackage;
+
+    exports dev.mccue.jdk;
 }

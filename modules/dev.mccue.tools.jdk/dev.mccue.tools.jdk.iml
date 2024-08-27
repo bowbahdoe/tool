@@ -15,5 +15,6 @@
     <orderEntry type="module" module-name="dev.mccue.tools.jlink" />
     <orderEntry type="module" module-name="dev.mccue.tools.jmod" />
     <orderEntry type="module" module-name="dev.mccue.tools.jpackage" />
+    <orderEntry type="module" module-name="dev.mccue.tools" />
   </component>
 </module>

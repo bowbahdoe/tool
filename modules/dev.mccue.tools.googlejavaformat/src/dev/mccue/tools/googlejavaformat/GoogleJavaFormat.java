@@ -18,6 +18,10 @@ public final class GoogleJavaFormat extends AbstractToolRunner<GoogleJavaFormat,
     }
 
     public static void download(URI source, Path destination) throws IOException {
+        if (destination.getParent() != null) {
+            Files.createDirectories(destination.getParent());
+        }
+
         try (var stream = source.toURL().openStream()) {
             Files.copy(stream, destination, StandardCopyOption.REPLACE_EXISTING);
         }
