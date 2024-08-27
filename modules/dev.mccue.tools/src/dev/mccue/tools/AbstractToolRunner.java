@@ -1,5 +1,6 @@
 package dev.mccue.tools;
 
+import java.io.OutputStream;
 import java.util.function.Consumer;
 
 public abstract class AbstractToolRunner<
@@ -32,6 +33,18 @@ public abstract class AbstractToolRunner<
     @SuppressWarnings("unchecked")
     public Self echoCommand(Consumer<String> consumer) {
         this.tool.echoCommand(consumer);
+        return (Self) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Self redirectOutput(OutputStream outputStream) {
+        this.tool.redirectOutput(outputStream);
+        return (Self) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Self redirectError(OutputStream outputStream) {
+        this.tool.redirectError(outputStream);
         return (Self) this;
     }
 

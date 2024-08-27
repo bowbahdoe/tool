@@ -18,6 +18,10 @@ public sealed interface Tool
         return new ToolProviderTool(toolProvider);
     }
 
+    static Tool ofToolProvider(String toolProviderName) {
+        return new ToolProviderTool(ToolProvider.findFirst(toolProviderName).orElseThrow());
+    }
+
     static Tool ofSubprocess(List<String> commandPrefix) {
         return new SubprocessTool(commandPrefix);
     }
