@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools-jstage</artifactId>
-    <version>2024.08.25.5</version>
+    <version>2024.08.27</version>
     <packaging>jar</packaging>
     <name>tools-jstage</name>
     <description>API for working directly with the jstage tool.</description>
@@ -26,17 +26,16 @@
         <developerConnection>scm:git:ssh://github.com:bowbahdoe/tools.git</developerConnection>
         <url>http://github.com/bowbahdoe/tools/tree/main</url>
     </scm>
-
     <dependencies>
-        <dependency>
-            <groupId>dev.mccue</groupId>
-            <artifactId>tools</artifactId>
-            <version>2024.08.25.5</version>
-        </dependency>
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>jstage</artifactId>
             <version>2024.07.19</version>
+        </dependency>
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.7.6</version>
         </dependency>
     </dependencies>
 </project>

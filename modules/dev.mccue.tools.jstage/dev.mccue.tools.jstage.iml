@@ -8,5 +8,7 @@
     <orderEntry type="jdk" jdkName="22" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="dev.mccue.tools" />
+    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="jstage.libs" level="project" />
   </component>
 </module>

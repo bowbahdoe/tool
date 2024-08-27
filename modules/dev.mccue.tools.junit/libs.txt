@@ -1,0 +1,1 @@
+pkg:maven/org.junit.platform/junit-platform-console@1.11.0
