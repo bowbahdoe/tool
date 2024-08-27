@@ -28,7 +28,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27 \
+      --module-version 2024.08.27.1 \
       -d build/javac \
       --module dev.mccue.tools,dev.mccue.tools.googlejavaformat,dev.mccue.tools.jar,dev.mccue.tools.java,dev.mccue.tools.javac,dev.mccue.tools.javadoc,dev.mccue.tools.javap,dev.mccue.tools.jdk,dev.mccue.tools.jlink,dev.mccue.tools.jmod,dev.mccue.tools.jpackage
 
@@ -36,7 +36,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27 \
+      --module-version 2024.08.27.1 \
       --module-path modules/dev.mccue.tools.jresolve/libs \
       -d build/javac \
       --module dev.mccue.tools.jresolve
@@ -45,7 +45,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27 \
+      --module-version 2024.08.27.1 \
       --module-path modules/dev.mccue.tools.jstage/libs \
       -d build/javac \
       --module dev.mccue.tools.jstage
@@ -54,7 +54,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27 \
+      --module-version 2024.08.27.1 \
       --module-path modules/dev.mccue.tools.junit/libs \
       -d build/javac \
       --module dev.mccue.tools.junit
