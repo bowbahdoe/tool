@@ -28,15 +28,15 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27.3 \
+      --module-version 2024.08.28 \
       -d build/javac \
-      --module dev.mccue.tools,dev.mccue.tools.googlejavaformat,dev.mccue.tools.jar,dev.mccue.tools.java,dev.mccue.tools.javac,dev.mccue.tools.javadoc,dev.mccue.tools.javap,dev.mccue.tools.jdk,dev.mccue.tools.jlink,dev.mccue.tools.jmod,dev.mccue.tools.jpackage
+      --module dev.mccue.tools,dev.mccue.tools.googlejavaformat,dev.mccue.tools.jar,dev.mccue.tools.java,dev.mccue.tools.javac,dev.mccue.tools.javadoc,dev.mccue.tools.javap,dev.mccue.tools.jdk,dev.mccue.tools.jlink,dev.mccue.tools.jmod,dev.mccue.tools.jpackage,dev.mccue.tools.pmd
 
     javac \
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27.3 \
+      --module-version 2024.08.28 \
       --module-path modules/dev.mccue.tools.jresolve/libs \
       -d build/javac \
       --module dev.mccue.tools.jresolve
@@ -45,7 +45,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27.3 \
+      --module-version 2024.08.28 \
       --module-path modules/dev.mccue.tools.jstage/libs \
       -d build/javac \
       --module dev.mccue.tools.jstage
@@ -54,7 +54,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2024.08.27.3 \
+      --module-version 2024.08.28 \
       --module-path modules/dev.mccue.tools.junit/libs \
       -d build/javac \
       --module dev.mccue.tools.junit
@@ -74,6 +74,7 @@ package: compile
     jar --create --file build/jar/dev.mccue.tools.jresolve.jar -C build/javac/dev.mccue.tools.jresolve .
     jar --create --file build/jar/dev.mccue.tools.jstage.jar -C build/javac/dev.mccue.tools.jstage .
     jar --create --file build/jar/dev.mccue.tools.junit.jar -C build/javac/dev.mccue.tools.junit .
+    jar --create --file build/jar/dev.mccue.tools.pmd.jar -C build/javac/dev.mccue.tools.pmd .
 
 document: clean
     javadoc --module-source-path "./modules/*/src" -d build/javadoc/dev.mccue.tools --module dev.mccue.tools
@@ -90,6 +91,7 @@ document: clean
     javadoc --module-path modules/dev.mccue.tools.jresolve/libs --module-source-path "./modules/*/src" -d build/javadoc/dev.mccue.tools.jresolve --module dev.mccue.tools.jresolve
     javadoc --module-path modules/dev.mccue.tools.jstage/libs --module-source-path "./modules/*/src" -d build/javadoc/dev.mccue.tools.jstage --module dev.mccue.tools.jstage
     javadoc --module-path modules/dev.mccue.tools.junit/libs --module-source-path "./modules/*/src" -d build/javadoc/dev.mccue.tools.junit --module dev.mccue.tools.junit
+    javadoc --module-source-path "./modules/*/src" -d build/javadoc/dev.mccue.tools.pmd --module dev.mccue.tools.pmd
 
 stage: package document
     jstage --output build/jstage --pom modules/dev.mccue.tools/pom.xml --artifact modules/dev.mccue.tools/src   --classifier sources
@@ -147,6 +149,10 @@ stage: package document
     jstage --output build/jstage --pom modules/dev.mccue.tools.junit/pom.xml --artifact modules/dev.mccue.tools.junit/src   --classifier sources
     jstage --output build/jstage --pom modules/dev.mccue.tools.junit/pom.xml --artifact build/javadoc/dev.mccue.tools.junit --classifier javadoc
     jstage --output build/jstage --pom modules/dev.mccue.tools.junit/pom.xml --artifact build/jar/dev.mccue.tools.junit.jar
+
+    jstage --output build/jstage --pom modules/dev.mccue.tools.pmd/pom.xml --artifact modules/dev.mccue.tools.pmd/src   --classifier sources
+    jstage --output build/jstage --pom modules/dev.mccue.tools.pmd/pom.xml --artifact build/javadoc/dev.mccue.tools.pmd --classifier javadoc
+    jstage --output build/jstage --pom modules/dev.mccue.tools.pmd/pom.xml --artifact build/jar/dev.mccue.tools.pmd.jar
 
 deploy: stage
     jreleaser deploy --output-directory build
