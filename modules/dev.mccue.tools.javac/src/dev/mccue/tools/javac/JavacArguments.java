@@ -275,7 +275,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __module_path(List<?> modules) {
         add("--module-path");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(",")));
+        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 
@@ -285,7 +285,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _p(List<?> modules) {
         add("-p");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(",")));
+        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
         return this;
     }
 

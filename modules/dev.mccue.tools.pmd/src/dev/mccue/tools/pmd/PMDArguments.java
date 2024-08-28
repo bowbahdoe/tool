@@ -38,7 +38,7 @@ public final class PMDArguments extends ToolArguments {
         add("check");
         return this;
     }
-    
+
     //The PMD standard source code analyzer
     //      [<positionalInputPaths>...]
     //                             Path to a source file, or directory containing
