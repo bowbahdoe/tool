@@ -14,7 +14,7 @@ public final class Javac extends AbstractToolRunner<Javac, JavacArguments> {
 
     private Javac() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
+                Tool.ofToolProvider("javac"),
                 new JavacArguments()
         );
     }
@@ -33,7 +33,7 @@ public final class Javac extends AbstractToolRunner<Javac, JavacArguments> {
 
     public static Javac runner(JavacArguments arguments) {
         return new Javac(
-                Tool.ofToolProvider(ToolProvider.findFirst("javac").orElseThrow()),
+                Tool.ofToolProvider("javac"),
                 arguments
         );
     }

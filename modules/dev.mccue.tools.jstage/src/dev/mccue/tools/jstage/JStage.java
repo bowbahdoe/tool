@@ -5,7 +5,6 @@ import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.Tool;
 
 import java.util.function.Consumer;
-import java.util.spi.ToolProvider;
 
 public final class JStage extends AbstractToolRunner<JStage, JStageArguments> {
     private JStage(Tool tool, JStageArguments arguments) {
@@ -14,7 +13,7 @@ public final class JStage extends AbstractToolRunner<JStage, JStageArguments> {
 
     private JStage() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("jstage").orElseThrow()),
+                Tool.ofToolProvider("jstage"),
                 new JStageArguments()
         );
     }
@@ -33,7 +32,7 @@ public final class JStage extends AbstractToolRunner<JStage, JStageArguments> {
 
     public static JStage runner(JStageArguments arguments) {
         return new JStage(
-                Tool.ofToolProvider(ToolProvider.findFirst("jstage").orElseThrow()),
+                Tool.ofToolProvider("jstage"),
                 arguments
         );
     }

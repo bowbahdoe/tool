@@ -15,7 +15,7 @@ public final class JResolve extends AbstractToolRunner<JResolve, JResolveArgumen
 
     private JResolve() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("jresolve").orElseThrow()),
+                Tool.ofToolProvider("jresolve"),
                 new JResolveArguments()
         );
     }
@@ -34,7 +34,7 @@ public final class JResolve extends AbstractToolRunner<JResolve, JResolveArgumen
 
     public static JResolve runner(JResolveArguments arguments) {
         return new JResolve(
-                Tool.ofToolProvider(ToolProvider.findFirst("jresolve").orElseThrow()),
+                Tool.ofToolProvider("jresolve"),
                 arguments
         );
     }

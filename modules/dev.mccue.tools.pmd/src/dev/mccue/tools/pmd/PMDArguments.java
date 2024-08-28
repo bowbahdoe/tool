@@ -34,6 +34,11 @@ public final class PMDArguments extends ToolArguments {
     //                 <rulesets>...]... [-R=<rulesets>[,<rulesets>...]...]...
     //                 [-z=<relativizePathsWith>[,<relativizePathsWith>...]...]...
     //                 [<positionalInputPaths>...]
+    public PMDArguments check() {
+        add("check");
+        return this;
+    }
+    
     //The PMD standard source code analyzer
     //      [<positionalInputPaths>...]
     //                             Path to a source file, or directory containing

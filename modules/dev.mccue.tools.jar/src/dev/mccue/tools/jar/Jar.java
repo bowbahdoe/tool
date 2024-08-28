@@ -14,7 +14,7 @@ public final class Jar extends AbstractToolRunner<Jar, JarArguments> {
 
     private Jar() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("jar").orElseThrow()),
+                Tool.ofToolProvider("jar"),
                 new JarArguments()
         );
     }
@@ -33,7 +33,7 @@ public final class Jar extends AbstractToolRunner<Jar, JarArguments> {
 
     public static Jar runner(JarArguments arguments) {
         return new Jar(
-                Tool.ofToolProvider(ToolProvider.findFirst("jar").orElseThrow()),
+                Tool.ofToolProvider("jar"),
                 arguments
         );
     }

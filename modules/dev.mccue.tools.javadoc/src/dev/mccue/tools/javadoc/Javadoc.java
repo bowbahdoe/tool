@@ -15,7 +15,7 @@ public final class Javadoc
 
     private Javadoc() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("javadoc").orElseThrow()),
+                Tool.ofToolProvider("javadoc"),
                 new JavadocArguments()
         );
     }
@@ -34,7 +34,7 @@ public final class Javadoc
 
     public static Javadoc runner(JavadocArguments arguments) {
         return new Javadoc(
-                Tool.ofToolProvider(ToolProvider.findFirst("javadoc").orElseThrow()),
+                Tool.ofToolProvider("javadoc"),
                 arguments
         );
     }

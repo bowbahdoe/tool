@@ -14,7 +14,7 @@ public final class Javap extends AbstractToolRunner<Javap, JavapArguments> {
 
     private Javap() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("javap").orElseThrow()),
+                Tool.ofToolProvider("javap"),
                 new JavapArguments()
         );
     }
@@ -33,7 +33,7 @@ public final class Javap extends AbstractToolRunner<Javap, JavapArguments> {
 
     public static Javap runner(JavapArguments arguments) {
         return new Javap(
-                Tool.ofToolProvider(ToolProvider.findFirst("javap").orElseThrow()),
+                Tool.ofToolProvider("javap"),
                 arguments
         );
     }

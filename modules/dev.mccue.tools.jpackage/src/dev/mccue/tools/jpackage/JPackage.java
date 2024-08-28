@@ -15,7 +15,7 @@ public final class JPackage
 
     private JPackage() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("jpackage").orElseThrow()),
+                Tool.ofToolProvider("jpackage"),
                 new JPackageArguments()
         );
     }
@@ -34,7 +34,7 @@ public final class JPackage
 
     public static JPackage runner(JPackageArguments arguments) {
         return new JPackage(
-                Tool.ofToolProvider(ToolProvider.findFirst("jpackage").orElseThrow()),
+                Tool.ofToolProvider("jpackage"),
                 arguments
         );
     }

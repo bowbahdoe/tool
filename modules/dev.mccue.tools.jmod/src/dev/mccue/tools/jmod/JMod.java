@@ -15,7 +15,7 @@ public final class JMod
 
     private JMod() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("jmod").orElseThrow()),
+                Tool.ofToolProvider("jmod"),
                 new JModArguments()
         );
     }
@@ -34,7 +34,7 @@ public final class JMod
 
     public static JMod runner(JModArguments arguments) {
         return new JMod(
-                Tool.ofToolProvider(ToolProvider.findFirst("jmod").orElseThrow()),
+                Tool.ofToolProvider("jmod"),
                 arguments
         );
     }

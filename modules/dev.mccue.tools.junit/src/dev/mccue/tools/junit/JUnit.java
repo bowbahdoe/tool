@@ -14,7 +14,7 @@ public final class JUnit extends AbstractToolRunner<JUnit, JUnitArguments> {
 
     private JUnit() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("jstage").orElseThrow()),
+                Tool.ofToolProvider("junit"),
                 new JUnitArguments()
         );
     }
@@ -33,7 +33,7 @@ public final class JUnit extends AbstractToolRunner<JUnit, JUnitArguments> {
 
     public static JUnit runner(JUnitArguments arguments) {
         return new JUnit(
-                Tool.ofToolProvider(ToolProvider.findFirst("jstage").orElseThrow()),
+                Tool.ofToolProvider("junit"),
                 arguments
         );
     }

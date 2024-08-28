@@ -15,7 +15,7 @@ public final class JLink
 
     private JLink() {
         super(
-                Tool.ofToolProvider(ToolProvider.findFirst("jlink").orElseThrow()),
+                Tool.ofToolProvider("jlink"),
                 new JLinkArguments()
         );
     }
@@ -34,7 +34,7 @@ public final class JLink
 
     public static JLink runner(JLinkArguments arguments) {
         return new JLink(
-                Tool.ofToolProvider(ToolProvider.findFirst("jlink").orElseThrow()),
+                Tool.ofToolProvider("jlink"),
                 arguments
         );
     }
