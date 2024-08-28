@@ -3,18 +3,13 @@ package dev.mccue.tools.pmd;
 import dev.mccue.tools.AbstractToolRunner;
 import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.Tool;
-import dev.mccue.tools.jar.Jar;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.function.Consumer;
-import java.util.regex.Pattern;
-import java.util.spi.ToolProvider;
 import java.util.zip.ZipInputStream;
 
 public final class PMD extends AbstractToolRunner<PMD, PMDArguments> {
