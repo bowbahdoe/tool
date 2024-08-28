@@ -320,8 +320,9 @@ public final class JavadocArguments extends ToolArguments {
 
     //    --release <release>
     //                  Provide source compatibility with specified release
-    public JavadocArguments __release() {
+    public JavadocArguments __release(Object release) {
         add("--release");
+        add(toArgumentString(release));
         return this;
     }
 

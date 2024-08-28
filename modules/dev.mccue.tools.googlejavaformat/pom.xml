@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools-googlejavaformat</artifactId>
-    <version>2024.08.27.2</version>
+    <version>2024.08.27.3</version>
     <packaging>jar</packaging>
     <name>tools-googlejavaformat</name>
     <description>API for working directly with the Google Java Format tool.</description>
@@ -31,12 +31,12 @@
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools</artifactId>
-            <version>2024.08.27.2</version>
+            <version>2024.08.27.3</version>
         </dependency>
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-java</artifactId>
-            <version>2024.08.27.2</version>
+            <version>2024.08.27.3</version>
         </dependency>
     </dependencies>
 </project>

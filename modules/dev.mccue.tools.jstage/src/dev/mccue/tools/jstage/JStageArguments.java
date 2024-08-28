@@ -31,6 +31,12 @@ public final class JStageArguments extends ToolArguments {
         return this;
     }
 
+    public JStageArguments __pom(Object pom) {
+        add("--pom");
+        add(toArgumentString(pom));
+        return this;
+    }
+
 
     public JStageArguments _V() {
         add("-V");
