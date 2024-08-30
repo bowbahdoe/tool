@@ -55,7 +55,7 @@ public final class PMD extends AbstractToolRunner<PMD, PMDArguments> {
                     Files.createDirectories(resolvedPath);
                 } else {
                     Files.createDirectories(resolvedPath.getParent());
-                    Files.copy(zis, resolvedPath);
+                    Files.copy(zis, resolvedPath, StandardCopyOption.REPLACE_EXISTING);
 
                     if (resolvedPath.endsWith("pmd") && !IS_WINDOWS) {
                         try {
