@@ -1,6 +1,6 @@
 project:
   name: tool
-  version: 2024.08.28
+  version: 2024.08.30
   description: API for working directly with CLI tools.
   longDescription: API for working directly with CLI tools.
   links:
