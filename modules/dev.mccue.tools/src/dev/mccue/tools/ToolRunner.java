@@ -4,8 +4,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.function.Consumer;
 
-public sealed interface ToolRunner
-    permits AbstractToolRunner {
+public sealed interface ToolRunner permits AbstractToolRunner {
     void run() throws ExitStatusException;
 
     void run(List<String> extraArguments) throws ExitStatusException;

@@ -1,5 +1,7 @@
 package dev.mccue.tools;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.spi.ToolProvider;
@@ -21,11 +23,27 @@ public sealed interface Tool
     }
 
     static Tool ofSubprocess(List<String> commandPrefix) {
-        return new SubprocessTool(commandPrefix);
+        return ofSubprocess(commandPrefix, (File) null);
     }
 
     static Tool ofSubprocess(String commandPrefix) {
-        return new SubprocessTool(List.of(commandPrefix));
+        return ofSubprocess(commandPrefix, (File) null);
+    }
+
+    static Tool ofSubprocess(List<String> commandPrefix, Path directory) {
+        return ofSubprocess(commandPrefix, directory.toFile());
+    }
+
+    static Tool ofSubprocess(String commandPrefix, Path directory) {
+        return ofSubprocess(commandPrefix, directory.toFile());
+    }
+
+    static Tool ofSubprocess(List<String> commandPrefix, File directory) {
+        return new SubprocessTool(commandPrefix, directory);
+    }
+
+    static Tool ofSubprocess(String commandPrefix, File directory) {
+        return new SubprocessTool(List.of(commandPrefix), directory);
     }
 
     default ToolRunner runner() {

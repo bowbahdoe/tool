@@ -1,5 +1,6 @@
 package dev.mccue.tools;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UncheckedIOException;
@@ -10,9 +11,11 @@ import java.util.function.Consumer;
 
 final class SubprocessTool extends AbstractTool {
     private final List<String> commandPrefix;
+    private final File directory;
 
-    SubprocessTool(List<String> commandPrefix) {
+    SubprocessTool(List<String> commandPrefix, File directory) {
         this.commandPrefix = commandPrefix;
+        this.directory = directory;
     }
 
     @Override
@@ -48,6 +51,10 @@ final class SubprocessTool extends AbstractTool {
             var pb = new ProcessBuilder(allArgs);
             pb.redirectOutput(ProcessBuilder.Redirect.PIPE);
             pb.redirectError(ProcessBuilder.Redirect.PIPE);
+
+            if (directory != null) {
+                pb.directory(directory);
+            }
 
             var process = pb.start();
             var t1 = Thread.startVirtualThread(() -> {

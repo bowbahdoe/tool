@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools-pmd</artifactId>
-    <version>2024.09.03</version>
+    <version>2024.09.03.1</version>
     <packaging>jar</packaging>
     <name>tools-pmd</name>
     <description>API for working directly with the PMD tool.</description>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools</artifactId>
-            <version>2024.09.03</version>
+            <version>2024.09.03.1</version>
         </dependency>
     </dependencies>
 </project>
