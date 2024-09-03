@@ -3,6 +3,7 @@ package dev.mccue.tools.pmd;
 import dev.mccue.tools.AbstractToolRunner;
 import dev.mccue.tools.ExitStatusException;
 import dev.mccue.tools.Tool;
+import dev.mccue.tools.ToolRunner;
 
 import java.io.IOException;
 import java.net.URI;
@@ -60,6 +61,7 @@ public final class PMD extends AbstractToolRunner<PMD, PMDArguments> {
                     if (resolvedPath.endsWith("pmd") && !IS_WINDOWS) {
                         try {
                             Tool.ofSubprocess("chmod")
+                                    .runner()
                                     .echoCommand(false)
                                     .run("+x", resolvedPath.toString());
                         } catch (ExitStatusException e) {

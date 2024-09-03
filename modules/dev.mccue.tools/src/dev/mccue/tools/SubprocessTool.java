@@ -8,33 +8,42 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-final class SubprocessTool implements Tool {
+final class SubprocessTool extends AbstractTool {
     private final List<String> commandPrefix;
-    private OutputStream redirectOutput;
-    private OutputStream redirectError;
-    private Consumer<? super String> echoCommand;
 
     SubprocessTool(List<String> commandPrefix) {
         this.commandPrefix = commandPrefix;
-        this.redirectOutput = null;
-        this.redirectError = null;
-        this.echoCommand = System.err::println;
     }
 
     @Override
     public void run(String[] args) throws ExitStatusException {
+        run(args, null, null, System.err::println);
+    }
+
+    @Override
+    public void run(List<String> args) throws ExitStatusException {
+        run(args.toArray(String[]::new));
+    }
+
+    @Override
+    void run(
+            String[] arguments,
+            OutputStream redirectOutput,
+            OutputStream redirectError,
+            Consumer<? super String> echoCommand
+    ) throws ExitStatusException {
         if (echoCommand != null) {
             var sb = new StringBuilder();
             sb.append(String.join(" ", commandPrefix));
-            if (!(args.length == 0)) {
+            if (!(arguments.length == 0)) {
                 sb.append(" ");
-                sb.append(String.join(" ", args));
+                sb.append(String.join(" ", arguments));
             }
             echoCommand.accept(sb.toString());
         }
 
         var allArgs = new ArrayList<>(commandPrefix);
-        allArgs.addAll(Arrays.asList(args));
+        allArgs.addAll(Arrays.asList(arguments));
         try {
             var pb = new ProcessBuilder(allArgs);
             pb.redirectOutput(ProcessBuilder.Redirect.PIPE);
@@ -66,43 +75,5 @@ final class SubprocessTool implements Tool {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
-    }
-
-    @Override
-    public void run(List<String> args) throws ExitStatusException {
-        run(args.toArray(String[]::new));
-    }
-
-    @Override
-    public Tool redirectOutput(OutputStream outputStream) {
-        this.redirectOutput = outputStream;
-        return this;
-    }
-
-    @Override
-    public Tool redirectError(OutputStream outputStream) {
-        this.redirectError = outputStream;
-        return this;
-    }
-
-
-    @Override
-    public Tool echoCommand(boolean echoCommand) {
-        if (echoCommand) {
-            if (this.echoCommand == null) {
-                this.echoCommand = System.err::println;
-            }
-        }
-        else {
-            this.echoCommand = null;
-        }
-
-        return this;
-    }
-
-    @Override
-    public Tool echoCommand(Consumer<? super String> consumer) {
-        this.echoCommand = consumer;
-        return this;
     }
 }

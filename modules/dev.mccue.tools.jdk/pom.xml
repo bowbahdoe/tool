@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.mccue</groupId>
     <artifactId>tools-jdk</artifactId>
-    <version>2024.08.30</version>
+    <version>2024.09.03</version>
     <packaging>jar</packaging>
     <name>tools-jdk</name>
     <description>API for working directly with the tools that come with a JDK.</description>
@@ -31,55 +31,55 @@
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-jar</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-java</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-javac</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-javadoc</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-javap</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-jlink</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-jmod</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
 
         <dependency>
             <groupId>dev.mccue</groupId>
             <artifactId>tools-jpackage</artifactId>
-            <version>2024.08.30</version>
+            <version>2024.09.03</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,14 +1,19 @@
 package dev.mccue.tools;
 
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class AbstractToolRunner<
+public non-sealed abstract class AbstractToolRunner<
         Self extends AbstractToolRunner<Self, Arguments>,
         Arguments extends ToolArguments
         > implements ToolRunner {
     protected final Arguments arguments;
     protected final Tool tool;
+    private OutputStream redirectOutput;
+    private OutputStream redirectError;
+    private Consumer<? super String> echoCommand;
 
     protected AbstractToolRunner(
             Tool tool,
@@ -16,39 +21,68 @@ public abstract class AbstractToolRunner<
     ) {
         this.tool = tool;
         this.arguments = arguments;
+        this.redirectOutput = null;
+        this.redirectError = null;
+        this.echoCommand = System.err::println;
     }
 
     @Override
-    public void run() throws ExitStatusException {
+    public final void run() throws ExitStatusException {
         var args = arguments.toArray(String[]::new);
-        tool.run(args);
+        (switch (tool) { case AbstractTool abstractTool -> abstractTool; })
+                .run(args, redirectOutput, redirectError, echoCommand);
     }
 
+    @Override
+    public final void run(List<String> extraArguments) throws ExitStatusException {
+        arguments.addAll(extraArguments);
+        run();
+    }
+
+    @Override
+    public final void run(String... extraArguments) throws ExitStatusException {
+        arguments.addAll(Arrays.asList(extraArguments));
+        run();
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
-    public Self echoCommand(boolean echo) {
-        this.tool.echoCommand(echo);
+    public final Self redirectOutput(OutputStream outputStream) {
+        this.redirectOutput = outputStream;
         return (Self) this;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
-    public Self echoCommand(Consumer<String> consumer) {
-        this.tool.echoCommand(consumer);
+    public final Self redirectError(OutputStream outputStream) {
+        this.redirectError = outputStream;
         return (Self) this;
     }
 
+
+    @Override
     @SuppressWarnings("unchecked")
-    public Self redirectOutput(OutputStream outputStream) {
-        this.tool.redirectOutput(outputStream);
+    public final Self echoCommand(boolean echoCommand) {
+        if (echoCommand) {
+            if (this.echoCommand == null) {
+                this.echoCommand = System.err::println;
+            }
+        }
+        else {
+            this.echoCommand = null;
+        }
+
         return (Self) this;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
-    public Self redirectError(OutputStream outputStream) {
-        this.tool.redirectError(outputStream);
+    public final Self echoCommand(Consumer<? super String> consumer) {
+        this.echoCommand = consumer;
         return (Self) this;
     }
 
-    public Arguments arguments() {
+    public final Arguments arguments() {
         return arguments;
     }
 }
